@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  grid-area: header;
+  background: white;
+  margin: 10px 10px 0px 10px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: white;
+  margin: 10px 0px 10px 10px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.main {
+  grid-area: main;
+  background: white;
+  margin: 10px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.footer {
+  grid-area: footer;
+  background: white;
+  margin: 0px 10px 10px 10px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.admin-container {
+  height: 100vh;
+  background-color: #eaebeb;
+  display: grid;
+  grid-template-areas:
+    "sidebar header header header header header header header header header header header header header header header header header header header header header "
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar main main main  main main main main main main main main main main main main main main main main main main"
+    "sidebar footer footer  footer footer footer footer footer footer footer footer footer footer footer footer footer footer footer footer footer footer footer";
+}
+
+
+.admin-sidebar>ul{
+  list-style: none;
+}
+.admin-sidebar>ul>li{
+  margin: 10px;
+}
+
+.admin-sidebar>ul>li>a{
+  text-decoration: none ;
+  font-size: larger;
+  color: black;
+  
+}
+
+.admin-sidebar>ul>li>a:hover{
+  color: blue;
+  
+}
+
+.admin-sidebar>ul>li>a:active{
+  opacity: 0.5;
+  
+}
+.main{
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
