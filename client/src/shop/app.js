@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Product from "./Product";
 import Products from "./Products"
+import Gallery from "./Gallery";
 import "./App.css";
 
 export default function app() {
@@ -19,6 +20,7 @@ export default function app() {
           <Route path="/" element={<Shop/>} />
           <Route path="/Product" element={<Product/>}/>
           <Route path="/Products" element={<Products/>}/>
+          <Route path="/Gallery/:id" element={<Gallery/>} />
         </Routes>
       </div>
       <div className="Footer">

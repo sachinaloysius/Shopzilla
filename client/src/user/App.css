@@ -315,3 +315,9 @@
     background-color: white;
     font-size: medium;
 }
+
+/* Product Details Style */
+.productdetailsStyle{
+    margin-top:-7px;
+    margin-left:39px;
+}

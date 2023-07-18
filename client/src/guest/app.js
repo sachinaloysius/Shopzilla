@@ -18,7 +18,6 @@ export default function app() {
       <div className="Main">
         <Routes>
           <Route path="/" element={<Home />} />
-         
         </Routes>
       </div>
       <div className="Footer">

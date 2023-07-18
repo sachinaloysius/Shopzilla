@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Mobile() {
   const [pricerange, setPricerange] = useState("");
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    MobileData();
+  }, []);
+  const MobileData = () => {
+    axios
+      .get("http://localhost:4777/Product_Mobile")
+      .then((response) => response.data)
+      .then((data) => {
+        setProductData(data.mobile);
+        console.log(data.mobile);
+      });
+  };
   return (
     <div className="Mobile_mainConatiner">
       <div className="left_SideConatiner">
@@ -19,7 +34,15 @@ export default function Mobile() {
             max="200000"
             style={{ width: "100%", marginTop: "25px" }}
           />
-        <div style={{paddingTop:"7px",paddingInline:"53px",fontSize:"large"}}>₹{pricerange}</div> 
+          <div
+            style={{
+              paddingTop: "7px",
+              paddingInline: "53px",
+              fontSize: "large",
+            }}
+          >
+            ₹{pricerange}
+          </div>
         </div>
         <div className="brand_Style">
           <details>
@@ -87,7 +110,6 @@ export default function Mobile() {
           </details>
         </div>
       </div>
-
       <div className="right_sideConatiner">
         <div className="subheader_right_sideConatiner">
           <div className="sort_Style">Sort By</div>
@@ -96,15 +118,18 @@ export default function Mobile() {
           <div className="right_SubheadingStyle">Price-High to Low</div>
           <div className="right_SubheadingStyle">Newest First</div>
         </div>
-        <div className="Product_Style">
-          <div className="Product_Container">
+        {productData.map((item, index) => (
+          <div className="Product_Container" key={index}>
             <img
-              src="https://rukminim1.flixcart.com/image/312/312/ktketu80/mobile/s/l/c/iphone-13-mlpf3hn-a-apple-original-imag6vzz5qvejz8z.jpeg?q=70"
+              src={item.product_image}
               alt=""
               className="Mobile_Productstyle"
             />
             <div className="product_Heading">
-             <Link to="/Iphone13mini" className="product_Heading">Apple iPhone 13 (Midnight,128 GB)</Link> 
+              <Link to={`/User/Phone/${item.product_id}`} className="product_Heading">
+                {item.product_name}
+              </Link>
+
               <div
                 style={{
                   fontSize: "15px",
@@ -113,311 +138,16 @@ export default function Mobile() {
                   paddingTop: "8px",
                 }}
               >
-                128 GB ROM
-              </div>
-              <div
-                style={{
-                  fontSize: "15px",
-                  color: "#212121",
-                  paddingInline: "31px",
-                  paddingTop: "5px",
-                }}
-              >
-                15.49 cm(6.1inch) Super Retina XDR Display
-              </div>
-              <div
-                style={{
-                  fontSize: "15px",
-                  color: "#212121",
-                  paddingInline: "31px",
-                  paddingTop: "5px",
-                }}
-              >
-                {" "}
-                12MP + 12 MP Front Camera
-              </div>
-              <div
-                style={{
-                  fontSize: "15px",
-                  color: "#212121",
-                  paddingInline: "31px",
-                  paddingTop: "5px",
-                }}
-              >
-                {" "}
-                A15 Bionic Chip Processor
-              </div>
-              <div
-                style={{
-                  fontSize: "15px",
-                  color: "#212121",
-                  paddingInline: "31px",
-                  paddingTop: "5px",
-                }}
-              >
-                Brand Warranty for 1 Year
+                <ul>
+                  {item.product_details.split(",").map((detail, index) => (
+                    <li key={index} style={{margin:"10px 0px"}}>{detail.trim()}</li>
+                  ))}
+                </ul>
               </div>
             </div>
+            <div className="product_PriceStyle">₹{item.product_price}</div>
           </div>
-          <div className="product_PriceStyle">₹60,999</div>
-        </div>
-        <div className="Product_Container">
-          <img
-            src="https://rukminim1.flixcart.com/image/312/312/xif0q/mobile/m/o/b/-original-imaghx9qkugtbfrn.jpeg?q=70"
-            alt=""
-            className="Mobile_Productstyle"
-          />
-          <div className="product_Heading">
-            Apple iPhone 14 (Starlight,128 GB)
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "8px",
-              }}
-            >
-              128 GB ROM
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              15.49 cm(6.1inch) Super Retina XDR Display
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              12MP + 12 MP Front Camera
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              A15 Bionic Chip 6 Core Processor
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              1 Year Warranty for Phone and 6 Months Warranty for In-Box
-              Accessories
-            </div>
-          </div>
-          <div className="product_PriceStyle">₹70,999</div>
-        </div>
-        <div className="Product_Container">
-          <img
-            src="https://rukminim1.flixcart.com/image/312/312/l0igvww0/mobile/y/j/1/-original-imagca5ge9yrbrzq.jpeg?q=70"
-            alt=""
-            className="Mobile_Productstyle"
-          />
-          <div className="product_Heading">
-            Apple iPhone 13 mini (Green,512 GB)
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "8px",
-              }}
-            >
-              512 GB ROM
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              13.72 cm(5.4inch) Super Retina XDR Display
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              12MP + 12 MP Front Camera
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              A15 Bionic Chip 6 Core Processor
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              Brand Warranty for 1 Year
-            </div>
-          </div>
-          <div className="product_PriceStyle">₹89,999</div>
-        </div>
-        <div className="Product_Container">
-          <img
-            src="https://rukminim1.flixcart.com/image/312/312/xif0q/mobile/m/l/o/-original-imagmg6gzjf7gggt.jpeg?q=70"
-            alt=""
-            className="Mobile_Productstyle"
-          />
-          <div className="product_Heading">
-            Samsung Galaxy S23 Ultra 5G (Green,512 GB)
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "8px",
-              }}
-            >
-              512 GB ROM
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              13.72 cm(5.4inch) Super Retina XDR Display
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              12MP + 12 MP Front Camera
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              A15 Bionic Chip 6 Core Processor
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              Brand Warranty for 1 Year
-            </div>
-          </div>
-          <div className="product_PriceStyle">₹1,34,999</div>
-        </div>
-        <div className="Product_Container">
-          <img
-            src="https://rukminim1.flixcart.com/image/312/312/xif0q/mobile/k/1/o/-original-imagmg6gz3bsgan7.jpeg?q=70"
-            alt=""
-            className="Mobile_Productstyle"
-          />
-          <div className="product_Heading">
-            Samsung Galaxy S23 Ultra 5G (Cream,512 GB)
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "8px",
-              }}
-            >
-              512 GB ROM
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              13.72 cm(5.4inch) Super Retina XDR Display
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              12MP + 12 MP Front Camera
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              A15 Bionic Chip 6 Core Processor
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                color: "#212121",
-                paddingInline: "31px",
-                paddingTop: "5px",
-              }}
-            >
-              {" "}
-              Brand Warranty for 1 Year
-            </div>
-          </div>
-          <div className="product_PriceStyle">₹1,34,999</div>
-        </div>
+        ))}
       </div>
     </div>
   );

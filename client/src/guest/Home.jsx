@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="HomePage-Main">
       <div className="carousal-Home">
-        <Carousel autoPlay infiniteLoop>
+        <Carousel autoPlay infiniteLoop showThumbs={false} showArrows={false}>
           <div>
             <img
               src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/f15b29daa9ad2ac1.jpg?q=20"

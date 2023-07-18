@@ -457,7 +457,7 @@ app.post("/Product",upload.fields([
 app.get("/Product/:id",(req,res)=>{
   const id=req.params.id
 let qry=`select * from tbl_product where shop_id=${id}` // shop tey avide shop tey thanne products kaan ayittu shop tey id vech select cheyth erikunn 
-console.log(qry);
+// console.log(qry);
 db.query(qry,(err,result)=>{
   if(err){
     console.log(err);
@@ -470,6 +470,116 @@ db.query(qry,(err,result)=>{
   else{
     res.send({
       product:[]
+    })
+  }
+})
+})
+app.delete("/ProductDelete/:id",(req,res)=>{
+  const id=req.params.id
+  let qry= `delete from tbl_product where product_id='${id}'`+
+  db.query(qry,(err,result)=>{
+  if(err){
+    console.log(err);
+  }
+  else{
+    res.send({
+      message:"Product Deleted" 
+    })
+  }
+})
+})
+app.get("/Product_Mobile",(req,res)=>{
+  let qry=`select * from tbl_product`
+  db.query(qry,(err,result)=>{
+    if(err){
+      console.log(err);
+    }
+    else if(result.length>0){
+      res.send({
+       mobile:result 
+      }) 
+    }
+    else{
+      res.send({
+       mobile:[] 
+      })
+      
+    } 
+  })
+})
+
+app.get("/Product_Phone/:pid",(req,res)=>{
+  const id=req.params.pid
+  let qry=`select * from tbl_product where product_id='${id}'`
+  db.query(qry,(err,result)=>{
+    if(err){
+      console.log(err);
+    }
+    else if(result.length>0){
+      res.send({
+        phone:result 
+      }) 
+    }
+    else{
+      res.send({
+        phone:[] 
+      })
+      
+    } 
+  })
+})
+
+app.post("/Gallery",upload.fields([
+  {name:"shopgallery",maxCount:1}
+]),(req,res)=>{
+  const fileValue=JSON.parse(JSON.stringify(req.files))
+  const productID=req.body.productid
+  const shopgallery=`http://127.0.0.1:${port}/images/${fileValue.shopgallery[0].filename}`
+ let qry=`insert into tbl_gallery(product_id,gallery_image)values('${productID}',
+ '${shopgallery}')`
+ db.query(qry,(err,result)=>{
+  if(err){
+    console.log(err);
+  }
+  else{
+    res.send({
+      message:"Data Saved"
+    })
+  }
+ }) 
+})
+app.get("/Gallery/:id",(req,res)=>{
+  const id=req.params.id
+  console.log(id);
+  let qry = `select * from tbl_gallery where product_id='${id}'`
+  console.log(qry);
+  db.query(qry,(err,result)=>{
+  if(err){
+    console.log(err);
+  }
+  else if(result.length>0){
+    res.send({
+      gallery:result
+    })
+  }
+  else{
+    res.send({
+      gallery:[]
+    })
+  }
+  })
+})
+app.delete("/Gallery/:id",(req,res)=>{
+  const id=req.params.id
+  let qry= `delete from tbl_gallery where gallery_id='${id}'`;
+  console.log(qry);
+  db.query(qry,(err,result)=>{
+  if(err){
+    console.log(err);
+  }
+  else{
+    res.send({
+      message:"Product Deleted" 
     })
   }
 })

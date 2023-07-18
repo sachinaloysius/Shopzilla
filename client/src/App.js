@@ -11,8 +11,6 @@ export default function App() {
       <Route path='/*' element={<Guest/>} />
       <Route path='/User/*' element={<User/>} />
       <Route path='/Shop/*' element={<Shop/>}/>
-      
-
     </Routes>
   )
 }

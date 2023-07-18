@@ -5,8 +5,8 @@ import Header from "./Header";
 import Subheader from "./Subheader";
 import Footer from "./Footer";
 import "./App.css";
-import Iphone13mini from "./Iphone13mini"
 import Mobile from "./Mobile"
+import Phone from "./Phone";
 export default function app() {
   return (
     <div className="guestConatiner">
@@ -20,7 +20,7 @@ export default function app() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Mobile" element={<Mobile/>}/>
-          <Route path="/Iphone13mini" element={<Iphone13mini/>}/>
+          <Route path="/Phone/:id" element={<Phone/>}/>
         </Routes>
       </div>
       <div className="Footer">
