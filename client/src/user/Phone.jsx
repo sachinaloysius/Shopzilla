@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Phone() {
   const value = useParams("id");
   const [name, setName] = useState("");
@@ -10,6 +12,8 @@ export default function Phone() {
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
+
+
   useEffect(() => {
     PhoneData();
   }, []);
@@ -34,6 +38,39 @@ export default function Phone() {
         setImages(data.gallery);
       });
   };
+  const AddtoCartClick=()=>{
+    var dat={
+  productid:value.id,
+   userid:sessionStorage.getItem("uid")
+    }
+   
+  axios.post("http://localhost:4777/Addtocart" , dat)
+  .then((response)=>response.data) .then((data) => {
+      if (data.message==="Added to Cart") {
+        toast.success('Added to Cart', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        toast.error('Already Added to Cart', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    })
+  }
   return (
     <div className="iphone13mini128gb_MainContainer">
       <div className="iphone13mini128gbHolderContainer">
@@ -71,7 +108,7 @@ export default function Phone() {
               5% off
             </span>
           </div>
-          <div className="addtocart_Style">
+          <div className="addtocart_Style" onClick={AddtoCartClick} >
             {" "}
             <img
               src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg"

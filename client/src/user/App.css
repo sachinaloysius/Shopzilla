@@ -321,3 +321,61 @@
     margin-top:-7px;
     margin-left:39px;
 }
+/* CART  Style Starts from Here */
+.Cart-Container{
+    position: relative;
+    top: 40px;
+    margin: 20px;
+}
+.Cart-TextAlign{
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: xx-large;
+}
+.cart-ColumnHeading{
+    width:16.6%;
+    color:#6f6b6b;
+    border-bottom: 1px solid #e3dbdb;
+    padding: 10px;   
+}
+.cart-Column{
+    width:16.6%;
+   padding: 10px;
+}
+.cart-Column>input[type="number"]{
+width: 50px;
+
+}
+
+.rupee::before{
+    content: "₹ ";
+}
+.cart-Column>button{
+    border: none;
+    width: 76px;
+    height: 22px;
+    background-color: #a44;
+    color: antiquewhite;
+    cursor: pointer;
+}
+
+.checkoutbtn{
+    width: 10pc;
+    height: 2pc;
+    border: none;
+    background-color: orange;
+    color: white;
+    border-radius: 2px;
+}
+
+/* Order Page Container */
+
+.OrderPage_Container{
+    position: relative;
+    top:35px ;
+}
+
+.OrderDetails_Conatiner{
+    position: relative;
+    top: 72px;
+}

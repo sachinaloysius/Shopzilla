@@ -684,6 +684,7 @@
   font-weight: bold;
   margin-left: 231px;
   margin-top: 4px;
+  cursor: grabbing;
 }
 .brand_nameProduct {
   padding-inline: 9pc;

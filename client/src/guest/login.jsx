@@ -20,7 +20,8 @@ export default function Login() {
         window.location="/Shop"
       }
       else if(response.data.login==="user"){
-       
+        sessionStorage.setItem('uid',response.data.id);
+       window.location="/User"
       }
       else if(response.data.login==="admin")
       {

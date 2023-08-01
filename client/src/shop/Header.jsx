@@ -10,6 +10,7 @@ export default function Header() {
           <li><Link to="/Shop/Product" className='ulstyle'>Add Product</Link></li>
           <li><Link className='ulstyle'>Booking</Link></li>
           <li><Link to="/Shop/Products" className='ulstyle'>Products</Link></li>
+          <li><Link to="/Shop/Orders" className='ulstyle'>Order</Link></li>
           <li><Link className='ulstyle'>Logout</Link></li>
           <img src={Shoplogo} style={{width:"70px"}} alt="" />
         </ul>

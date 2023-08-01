@@ -7,6 +7,7 @@ import Product from "./Product";
 import Products from "./Products"
 import Gallery from "./Gallery";
 import "./App.css";
+import Orders from "./Orders";
 
 export default function app() {
   return (
@@ -20,6 +21,7 @@ export default function app() {
           <Route path="/" element={<Shop/>} />
           <Route path="/Product" element={<Product/>}/>
           <Route path="/Products" element={<Products/>}/>
+          <Route path="/Orders" element={<Orders/>} />
           <Route path="/Gallery/:id" element={<Gallery/>} />
         </Routes>
       </div>

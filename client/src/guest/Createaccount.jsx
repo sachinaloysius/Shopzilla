@@ -89,7 +89,7 @@ export default function Createaccount() {
         </div>
         <div className="label">
           Password <br />
-          <input type="text" onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" onChange={(e) => setPassword(e.target.value)} />
           <br />
           <p>Passwords must be at least 6 characters.</p>
         </div>

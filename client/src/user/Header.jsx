@@ -3,6 +3,8 @@ import Searchlogo from "./assets/search.gif";
 import { Link } from "react-router-dom";
 import "./App.css";
 
+
+
 export default function Header() {
 
  
@@ -25,7 +27,9 @@ export default function Header() {
           }}
           alt=""
         />
-        <span style={{position: "inherit",right: "50px"}}>
+       
+        <Link style={{ fontSize: "20px", color: "white" ,textDecoration:"none",position: "inherit",right: "130px" }} to="/User/Order">My Order</Link>
+         <Link to="/User/Cart" style={{ fontSize: "20px", color: "white" ,textDecoration:"none",position: "inherit",right: "50px" }}><span>
            <img
           src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg"
           style={{
@@ -37,9 +41,10 @@ export default function Header() {
           }}
           alt=""
         />
-        <span style={{ fontSize: "20px", color: "white" }}>Cart</span>
+      Cart
         </span>
-      
+        </Link> 
+        
       </div>
       
     </div>

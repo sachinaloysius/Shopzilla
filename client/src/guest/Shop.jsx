@@ -118,7 +118,7 @@ export default function Shop() {
             </span>
             <br />
             <input
-              type="text"
+              type="password"
               className="shopstyle"
               onChange={(e) => setPassword(e.target.value)}
             />
