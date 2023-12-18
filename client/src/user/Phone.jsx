@@ -12,10 +12,11 @@ export default function Phone() {
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
-
+  const[stock,setStock]=useState([])
 
   useEffect(() => {
     PhoneData();
+    getStock()
   }, []);
   const PhoneData = () => {
     axios
@@ -71,6 +72,14 @@ export default function Phone() {
       }
     })
   }
+
+  const getStock=()=>{
+    axios.get(`http://localhost:4777/StockDetail/${value.id}`)
+    .then((response)=>response.data)
+    .then((data)=>{
+      setStock(data.stock)
+    })
+  }
   return (
     <div className="iphone13mini128gb_MainContainer">
       <div className="iphone13mini128gbHolderContainer">
@@ -86,8 +95,8 @@ export default function Phone() {
         <div className="Product_RightContainer">
           <div className="brand_nameProduct">{name}</div>
           <div className="product_PriceStyle">
-            {price}
-            <span
+          ₹{price}
+            {/* <span
               style={{
                 fontSize: "small",
                 textDecoration: "line-through",
@@ -96,8 +105,8 @@ export default function Phone() {
               }}
             >
               ₹74,900
-            </span>
-            <span
+            </span> */}
+            {/* <span
               style={{
                 fontSize: "small",
                 fontWeight: "bold",
@@ -106,9 +115,10 @@ export default function Phone() {
               }}
             >
               5% off
-            </span>
+            </span> */}
           </div>
-          <div className="addtocart_Style" onClick={AddtoCartClick} >
+          {stock<1}
+          {stock<1?(  <div className="addtocart_Style" onClick={AddtoCartClick} >
             {" "}
             <img
               src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg"
@@ -121,9 +131,28 @@ export default function Phone() {
               }}
               alt="cartlogo"
             />
-            ADD TO CART
-          </div>
+            Out of stock
+          </div>):(
+              <div className="addtocart_Style" onClick={AddtoCartClick} >
+              {" "}
+              <img
+                src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg"
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  marginBottom: "-8px",
+                  filter: "invert(1)",
+                  marginInline: "15px",
+                }}
+                alt="cartlogo"
+              />
+              ADD TO CART
+            </div>
+          )}
+        
           <div>
+          
+            <div> {stock<10?`Left ${stock}`:""} </div>
             <div className="avilableoffer_Style">Available offers</div>
             <span className="bankOffersContainer">
               <img

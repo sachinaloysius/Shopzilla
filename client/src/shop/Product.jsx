@@ -97,7 +97,7 @@ const buttonClick=()=>{
             <input type="file" onChange={(e)=>setProductimage(e.target.files[0])} />
           </span>
         </div>
-        <button style={{paddingInline:"127px",marginInline:"23px",height:"37px"}} onClick={buttonClick}>Submit</button>
+        <button style={{paddingInline:"127px",marginInline:"62px",height:"37px"}} onClick={buttonClick}>Submit</button>
       </div>
     </div>
   );

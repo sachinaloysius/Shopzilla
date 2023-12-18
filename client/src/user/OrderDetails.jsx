@@ -1,56 +1,95 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Modal from "react-modal";
+import { useNavigate, useParams } from "react-router-dom";
+import Review from "./Review";
+import "./Review.css";
+import OrderItems from "./OrderItems";
 export default function OrderDetails() {
-  const {bid}=useParams()
-  const[displayout,setDisplayout]=useState([])
- 
-  useEffect(()=>{
-    getProductDetails()
-  },[])
-  const getProductDetails=()=>{
-    axios.get("http://localhost:4777/OrderDetails/"+ bid)
-    .then((response)=>response.data)
-    .then((data)=>{
-      setDisplayout(data.OrderProductDetails)
-    })
+  const { bid } = useParams();
+  const navigate = useNavigate();
+  const [displayout, setDisplayout] = useState([]);
+  const [reviewmodal, setReviewmodal] = useState(false);
+
+  function openreview() {
+    setReviewmodal(true);
   }
 
-  const buttonClickCancelOrder=(pid)=>{
-   var dat={
-    bid:bid,
-    pid:pid
-   }
-   axios.post('http://localhost:4777/CancelOrder' , dat)
-   .then((response)=>{
-    if(response.data.message==="True"){
-      alert("Order Cancelled")
-      getProductDetails()
-    }
-    else{
-      alert('Failed')
-    }
-   })
+  const ReviewStyle = {
+    content: {
+      width: "fit-content",
+      top: "55%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      padding: "0",
+      transform: "translate(-50%, -57%)",
+    },
+  };
+
+  function closereview() {
+    setReviewmodal(false);
   }
+
+  useEffect(() => {
+    getProductDetails();
+  }, []);
+  const getProductDetails = () => {
+    axios
+      .get("http://localhost:4777/OrderDetails/" + bid)
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+        setDisplayout(data.OrderProductDetails);
+      });
+  };
+
+  const buttonClickCancelOrder = (pid) => {
+    var dat = {
+      bid: bid,
+      pid: pid,
+    };
+    axios.post("http://localhost:4777/CancelOrder", dat).then((response) => {
+      if (response.data.message === "True") {
+        alert("Order Cancelled");
+        if (response.data.check === "pass") {
+          navigate("/User/Order");
+        } else {
+          getProductDetails();
+        }
+      } else {
+        alert("Failed");
+      }
+    });
+  };
   return (
+    <div className="OrderDetails_Conatiner">
+      <div className="OrderDetail_LeftSideContainer">
+        <div className="Main_Heading">Filter</div>
+        <div className="Order_Heading">ORDER STATUS</div>
+           <div className="checkbox_Holder"><input type="checkbox" />On the way</div>
+        <div className="checkbox_Holder"><input type="checkbox" />Delivered</div>
+        <div className="checkbox_Holder"><input type="checkbox" />Cancelled</div>
+        <div className="checkbox_Holder"><input type="checkbox" />Returned</div>
+        <div className="order_TimeHeading">ORDER TIME</div>
+        <div className="checkbox_Holder"><input type="checkbox" />Last 30 Days</div>
+        <div className="checkbox_Holder"><input type="checkbox" />2022</div>
+        <div className="checkbox_Holder"><input type="checkbox" />2021</div>
+        <div className="checkbox_Holder"><input type="checkbox" />Older</div>
+      </div>
       
-    <div className='OrderDetails_Conatiner'>
-     <table border="1px soild black"  style={{marginInline:"250px",marginTop:"20px"}}>
-           <tr>
-                <td width="200px">Srlno</td>
-                <td width="200px">Product Image</td>
-                <td width="200px">Product Name</td>
-                <td>Action</td>
-            </tr>  
-            {displayout.map((row,key)=>(
-              <tr>
-                <td width="200px">{key+1}</td>
-                <td width="200px"><img src={row.product_image}  width={"100px"}alt="" /></td>
-                <td width="200px">{row.product_name}</td>
-                <td><button style={{backgroundColor:'red',color:"white",border:"none"}} onClick={()=>buttonClickCancelOrder(row.product_id)}>Cancel Order</button></td>
-              </tr>
-            ))}
-            </table>
+      <div className="OrderDetail_RightSideContainer">
+        <div>
+          <input type="text" />
+          <button>Search Orders</button>
+        </div>
+
+        <div>
+          {displayout.map((row, key) => (
+            <OrderItems row={row}/>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }

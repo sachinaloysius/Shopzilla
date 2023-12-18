@@ -44,6 +44,7 @@ export default function Products() {
             <th>Product Image</th>
             <th>Action</th>
             <th>Add Images</th>
+            <th>Stocks</th>
           </tr>
         </thead>
         <tbody>
@@ -75,6 +76,9 @@ export default function Products() {
               </td>
               <td>
                 <Link to={`/Shop/Gallery/${row.product_id}`}>Click Here</Link>
+              </td>
+              <td>
+                <Link to={`/Shop/StockDetails/${row.product_id}`}>AddStocks</Link>
               </td>
             </tr>
           ))}

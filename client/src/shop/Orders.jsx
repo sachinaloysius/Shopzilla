@@ -1,40 +1,79 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 export default function Orders() {
-    const sid=sessionStorage.getItem('sid')
-    const[displayOut,setDisplayOut]=useState([])
-    
-   useEffect(()=>{
-    getProductDetails()
-   },[])
-    const getProductDetails=()=>{
-        axios.get("http://localhost:4777/ShopOrder/" + sid)
-        .then((response)=>response.data)
-        .then((data)=>{
-        setDisplayOut(data.shoporderread)
-        })
-    }
+  const sid = sessionStorage.getItem("sid");
+  const [displayOut, setDisplayOut] = useState([]);
+
+  useEffect(() => {
+    getProductDetails();
+  }, []);
+  const getProductDetails = () => {
+    axios
+      .get("http://localhost:4777/ShopOrder/" + sid)
+      .then((response) => response.data)
+      .then((data) => {
+        setDisplayOut(data.shoporderread);
+      });
+  };
+
+  const buttonClickStatus = (id, status) => {
+    axios
+      .post("http://localhost:4777/CartStatus", { id: id, status: status })
+      .then((response) => response.data)
+      .then((data) => {
+        getProductDetails();
+      });
+  };
   return (
-    <div className='Shop_OrderConatiner'>
-      <table width="1000px" border="1px soild black" style={{marginInline:"300px"}}>
+    <div className="Shop_OrderConatiner">
+      <table
+        border="1px soild black"
+        style={{ marginInline: "300px" }}
+      >
         <tr>
-            <td width="80px">Srl.no</td>
-            <td width="100px">Booking Date</td>
-            <td width="200px">User Name</td>
-            <td width="520px"> Product Name</td>
-            <td width="100px">Product Qty</td>
+          <td >Srl.no</td>
+          <td>Booking Date</td>
+          <td>User Name</td>
+          <td> Product Name</td>
+          <td>Product Qty</td>
+          <td>Action</td>
         </tr>
-        {displayOut.map((row,key)=>(
-              <tr>
-              <td width="80px">{key+1}</td>
-              <td width="100px">{row.booking_date}</td>
-              <td width="200px">{row.user_name}</td>
-              <td width="520px"> {row.product_name}</td>
-              <td width="100px">{row.cart_quantity}</td>
+        {displayOut.map((row, key) => (
+          <tr>
+            <td >{key + 1}</td>
+            <td >{row.booking_date}</td>
+            <td>{row.user_name}</td>
+            <td > {row.product_name}</td>
+            <td >{row.cart_quantity}</td>
+            <td>
+              {row.cart_status === 1 ? (
+                <button onClick={() => buttonClickStatus(row.cart_id, 2)}>
+                  Packing
+                </button>
+              ) : row.cart_status===2?(
+                <>
+                  Packed ||
+                   <button onClick={() => buttonClickStatus(row.cart_id, 3)}>
+                    Dispatch
+                  </button>
+                </>
+              ):row.cart_status===3?(
+                <>
+                Dispatched ||
+                <button onClick={()=>buttonClickStatus(row.cart_id,4)}>Ship</button>
+                </>
+              ):row.cart_status===4?(
+                <>
+                Shiped ||
+                <button onClick={()=>buttonClickStatus(row.cart_id,5)}>Deliver</button>
+                </>
+              ):"Delivered"
+            }
+            </td>
           </tr>
         ))}
       </table>
     </div>
-  )
+  );
 }

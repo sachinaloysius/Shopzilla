@@ -25,12 +25,13 @@ export default function Subheader() {
         </div>
          
           <div style={{ marginInline: "140px", display: "flex", justifyContent: "space-between",padding:"4px" }}>
-            <div style={{fontSize:"large"}}>Grocery</div>
-          <div style={{fontSize:"large",marginRight:"20px"}}>Fashion</div>
-          <div><Link to="/User/Mobile" style={{fontSize:"large",textDecoration:"None",color:"black"}}>Mobile</Link></div>
-          <div  style={{fontSize:"large"}}>Electronics</div>
-          <div style={{fontSize:"large"}} >Laptops</div>
-          <div style={{fontSize:"large"}} >Appliances</div>
+          <div style={{fontSize:"large"}}>Grocery</div>
+          <div> <Link to="/User/Products/29" style={{fontSize:"large",textDecoration:"None",color:"black"}}>Fashion</Link></div>
+          {/* evide category map cheynama ayirunn  */}
+          <div> <Link to="/User/Products/25" style={{fontSize:"large",textDecoration:"None",color:"black"}}>Mobile</Link></div>
+          <div> <Link to="/User/Products/30" style={{fontSize:"large",textDecoration:"None",color:"black"}}>Electronics</Link></div>
+          <div> <Link to="/User/Products/26" style={{fontSize:"large",textDecoration:"None",color:"black"}}>Laptop</Link></div>
+          <div> <Link to="/User/Products/31" style={{fontSize:"large",textDecoration:"None",color:"black"}}>Appliances</Link></div>
           <div style={{fontSize:"large"}} >Travel</div>
           <div style={{fontSize:"large"}}>Top Offer</div>
           </div>

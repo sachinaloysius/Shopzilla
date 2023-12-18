@@ -27,7 +27,7 @@ export default function Subheader() {
           <div style={{ marginInline: "140px", display: "flex", justifyContent: "space-between",padding:"4px" }}>
             <div style={{fontSize:"large"}}>Grocery</div>
           <div style={{fontSize:"large",marginRight:"20px"}}>Fashion</div>
-          <div><Link to="/User/Mobile" style={{fontSize:"large",textDecoration:"None",color:"black"}}>Mobile</Link></div>
+          <div  style={{fontSize:"large"}}>Mobile</div>
           <div  style={{fontSize:"large"}}>Electronics</div>
           <div style={{fontSize:"large"}} >Laptops</div>
           <div style={{fontSize:"large"}} >Appliances</div>

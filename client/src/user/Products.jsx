@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import './Review.css'
 
-export default function Mobile() {
+export default function Products() {
+  const value=useParams('pid')
   const [pricerange, setPricerange] = useState("");
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     MobileData();
-  }, []);
+  }, [value]);
+
+  
   const MobileData = () => {
     axios
-      .get("http://localhost:4777/Product_Mobile")
+      .get(`http://localhost:4777/Product_Mobile/${value.pid}`)
       .then((response) => response.data)
       .then((data) => {
         setProductData(data.mobile);
@@ -145,7 +149,26 @@ export default function Mobile() {
                 </ul>
               </div>
             </div>
-            <div className="product_PriceStyle">₹{item.product_price}</div>
+            <div className="product_PriceStyle">₹{item.product_price}
+            <div className="rating">
+        {[...Array(5)].map((_, i) => {
+          const ratingValue = i + 1;
+          return (
+            <label key={i}>
+              <input
+                type="radio"
+                name="rating"
+                value={item.ratingcount}
+                
+              />
+              <span style={{fontSize:'35px'}} className={ratingValue <= item.ratingcount ? "checked" : ""}>
+                &#9733;
+              </span>
+            </label>
+          );
+        })}
+      </div>
+            </div>
           </div>
         ))}
       </div>

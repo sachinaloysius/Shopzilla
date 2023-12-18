@@ -8,8 +8,7 @@ export default function Cart() {
   const [cartitem, setCartitem] = useState([]);
   const [grandTotal, setGarndTotal] = useState(0);
   const [bookingid, setBookingid] = useState("");
-  console.log(bookingid);
-  useEffect(() => {
+    useEffect(() => {
     getCartItem();
   }, []);
 
@@ -75,6 +74,7 @@ export default function Cart() {
             <CartItem
               key={key}
               product={row}
+             
               remove={removeitemclick}
               load={getCartItem}
             />

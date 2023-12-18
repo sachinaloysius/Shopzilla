@@ -8,6 +8,7 @@ import Products from "./Products"
 import Gallery from "./Gallery";
 import "./App.css";
 import Orders from "./Orders";
+import StockDetails from "./StockDetails";
 
 export default function app() {
   return (
@@ -23,6 +24,8 @@ export default function app() {
           <Route path="/Products" element={<Products/>}/>
           <Route path="/Orders" element={<Orders/>} />
           <Route path="/Gallery/:id" element={<Gallery/>} />
+          <Route path="/StockDetails/:id" element={<StockDetails/>}/>
+
         </Routes>
       </div>
       <div className="Footer">

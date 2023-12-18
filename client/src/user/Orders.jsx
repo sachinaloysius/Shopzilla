@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 export default function Orders() {
+    const uid=sessionStorage.getItem('uid')
+    console.log(uid);
     const[displayout,setDisplayout]=useState([])
        useEffect(()=>{
         getOrderDetails()
        },[])
     const getOrderDetails=()=>{
-        axios.get("http://localhost:4777/Order")
+        axios.get("http://localhost:4777/Order/"+ uid)
         .then((response)=>response.data)
         .then((data)=>{
             setDisplayout(data.orderdetailsread)
@@ -28,7 +30,7 @@ export default function Orders() {
                  <td width="200px">{key+1}</td>
                 <td width="200px"> {row.booking_date}</td>
                 <td width="200px">{row.booking_amount}</td>
-                <td width="200px"><Link to={`/User/Order/OrderDetails/${row.booking_id}`}>View Details</Link></td>  
+                <td width="200px"><Link to={`/User/OrderDetails/${row.booking_id}`}>View Details</Link></td>  
                 </tr>
             ))}
         </table>

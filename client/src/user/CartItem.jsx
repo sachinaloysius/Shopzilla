@@ -5,10 +5,13 @@ import React, { useEffect, useState } from "react";
 export default function CartItem({ key, product, remove,load }) {
   const [total, setTotal] = useState();
   const [qtyvalue, setQtyValue] = useState(1);
-  const { product_image, product_name, product_price, cart_id ,cart_quantity  } = product;
+  const { product_image, product_name, product_price, cart_id ,cart_quantity,product_id } = product;
+  const[stock,setStock]=useState([])
+
 
   useEffect(()=>{
         setTotal(product_price);
+        getStocks()
   },[]);
 
   const toUpdateTotal = (qty,price,id) => {
@@ -33,7 +36,15 @@ export default function CartItem({ key, product, remove,load }) {
       load();
     })
   })
-
+ const getStocks=()=>{
+  const pid=product_id
+  console.log(pid);
+  axios.get('http://localhost:4777/StockDetail/'+pid)
+  .then((response)=>response.data)
+  .then((data)=>{
+    setStock(data.stock)
+  })
+ }
   return (
     <div style={{ display: "flex", width: "90%", marginTop: "15px" }}>
       <div className="cart-Column">
@@ -46,6 +57,7 @@ export default function CartItem({ key, product, remove,load }) {
           type="number"
           min={1}
           value={cart_quantity}
+          max={stock}
           onChange={(e) => toUpdateTotal(e.target.value, product_price,cart_id)}
         />
       </div>

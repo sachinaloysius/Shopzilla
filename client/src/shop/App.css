@@ -59,8 +59,8 @@
     
 }
 .productbox{
-  width: 340px;
-  height: 650px;
+  width: 447px;
+  height: 622px;
   background-color: #0c95e4;
   border: 1px solid black;
 
@@ -88,4 +88,37 @@
 .Shop_OrderConatiner{
     position: relative;
     top: 70px;
+}
+.StockDetailsMainContainer{
+   position: relative;
+   top: 72px;
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.StockDetailsInputConatiner{
+    width: 500px;
+    height: 485px;
+    border: 1px solid black;
+    border-radius: 33px;
+}
+.StockDetailsInputROW{
+    padding-inline: 50px;
+    margin: 30px;
+}
+.StockDetailsInputROW>input{
+    padding: 8px;
+    padding-inline: 24px;
+}
+.StockDetailsInputBtn{
+    border: 1px solid;
+    margin-inline: 113px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 33px;
+    color: blue;
+    cursor: pointer;
+}
+.StockDetailsOutputConatiner{
+
 }

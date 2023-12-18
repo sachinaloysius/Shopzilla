@@ -102,7 +102,7 @@ export default function Header() {
           style={{
             width: "25px",
             height: "25px",
-            "margin-bottom": "-8px",
+            marginBottom: "-8px",
             marginLeft: "19px",
             filter: "invert(1)"
           }}

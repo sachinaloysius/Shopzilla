@@ -377,5 +377,100 @@ width: 50px;
 
 .OrderDetails_Conatiner{
     position: relative;
-    top: 72px;
+    top: 36px;
+    background-color: #f1f3f6;
+    height: 630px;
+    display: flex;
+}
+
+.ReviewBtn{
+    position: absolute;
+    right: 7px;
+    top: 8px;
+    width: 41px;
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.OrderDetail_LeftSideContainer{
+    margin-top: 18px;
+    margin-left: 30px;
+    width: 200px;
+    background-color: white;
+    height: 350px;
+    border-radius: 3px;
+}
+
+.OrderDetail_RightSideContainer>div>input{
+    height: 38px;
+    width: 950px;
+    border: 1px solid #dbdbdb;
+    padding-inline: 12px;
+    margin-top: 17px;
+    margin-left: 8px;
+}
+.OrderDetail_RightSideContainer>div>button{
+    background: #2874f0;
+    color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    border: none;
+    height: 39px;
+    width: 130px;
+    margin-left: 2px;
+
+}
+.OrderDetail_LeftSideContainer>.Main_Heading{
+    font-weight: 500;
+    font-size: 20px;
+    margin-inline: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Roboto,Arial,sans-serif;
+    letter-spacing: 0;
+    border-bottom: 1px solid #dbd2d2;
+    padding-bottom: 6px;
+}
+.OrderDetail_LeftSideContainer>.Order_Heading{
+    font-family: Roboto,Arial,sans-serif;
+    letter-spacing: 0;
+    font-weight: 500;
+    font-size: 14px;
+    margin-inline: 12px;
+}
+.checkbox_Holder{
+   margin-inline: 15px;
+   margin-top: 10px;
+}
+.OrderDetail_LeftSideContainer>.order_TimeHeading{
+    font-family: Roboto,Arial,sans-serif;
+    letter-spacing: 0;
+    font-weight: 500;
+    font-size: 14px;
+    margin-inline: 12px;
+    margin-top: 10px;
+}
+.orderItemMainContainer{
+    margin-top: 10px;
+    margin-inline: 10px;
+}
+.Order_ContainerItem{
+    width: 1150px;
+    height: 115px;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.Order_ContainerItem{
+    display: flex;
+    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
+}
+.Order_ContainerItem>div>.rate_design{
+    font-size: larger;
+}
+.rate_design::before{
+    content: '₹';
 }

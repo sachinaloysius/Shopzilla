@@ -21,10 +21,11 @@ export default function Login() {
       }
       else if(response.data.login==="user"){
         sessionStorage.setItem('uid',response.data.id);
-       window.location="/User"
+         window.location="/User"
       }
       else if(response.data.login==="admin")
       {
+        sessionStorage.setItem('aid',response.data.id);
         window.location="/Admin";
       }
       else

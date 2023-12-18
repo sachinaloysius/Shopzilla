@@ -443,26 +443,37 @@ app.get("/Product/:id", (req, res) => {
 });
 app.delete("/ProductDelete/:id", (req, res) => {
   const id = req.params.id;
-  let qry =
-    `delete from tbl_product where product_id='${id}'`;
-    db.query(qry, (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send({
-          message: "Product Deleted",
-        });
-      }
-    });
+  let qry = `delete from tbl_product where product_id='${id}'`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({
+        message: "Product Deleted",
+      });
+    }
+  });
 });
-app.get("/Product_Mobile", (req, res) => {
-  let qry = `select * from tbl_product`;
+app.get("/Product_Mobile/:pid", (req, res) => {
+  let category_id = req.params.pid;
+  let qry = `select * from tbl_product p inner join tbl_subcategory sc on sc.subcategory_id=p.subcategory_id where category_id='${category_id}'`;
   db.query(qry, (err, result) => {
     if (err) {
       console.log(err);
     } else if (result.length > 0) {
-      res.send({
-        mobile: result,
+      result.map((row, key) => {
+        let pid = row.product_id;
+        let qry1 = `select sum(review_count) as sum,count(review_id) as count from tbl_review where product_id='${pid}'`;
+        db.query(qry1, (err, results) => {
+          const ratingcount =
+            parseInt(results[0].sum) / parseInt(results[0].count);
+          result[key].ratingcount = ratingcount;
+          if (key === result.length - 1) {
+            res.send({
+              mobile: result,
+            });
+          }
+        });
       });
     } else {
       res.send({
@@ -658,120 +669,421 @@ app.post("/CartUpdate", (req, res) => {
   });
 });
 
-app.post("/Cart_Checkout",(req,res)=>{
-  const id=req.body.bookingid
-  const totalamt=req.body.grandTotal
-  let cartqry=`update tbl_cart set cart_status=1 where booking_id='${id}'`
-  let bookingqry=`update tbl_booking set booking_status=1,booking_amount='${totalamt}'  where booking_id='${id}'`
-  db.query(cartqry,(err,result)=>{
-   if(err){
-    console.log(err);
-   }
-   else{
-    db.query(bookingqry,(err,result)=>{
-      if(err){
-       console.log(err);
-      }
-      else{
-       res.send({
-         message:"True"
-       })
-      }
-     })
-   }
-  })
-  
-})
+app.post("/Cart_Checkout", (req, res) => {
+  const id = req.body.bookingid;
+  const totalamt = req.body.grandTotal;
+  let cartqry = `update tbl_cart set cart_status=1 where booking_id='${id}'`;
+  let bookingqry = `update tbl_booking set booking_status=1,booking_amount='${totalamt}'  where booking_id='${id}'`;
+  db.query(cartqry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      db.query(bookingqry, (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send({
+            message: "True",
+          });
+        }
+      });
+    }
+  });
+});
 
-app.post("/ClickToPay",(req,res)=>{
-  const id=req.body.id
-  let qry=`update tbl_booking set booking_status=2 where booking_id='${id}'`
-  db.query(qry,(err,result)=>{
-   if(err){
-    console.log(err);
-    res.send({
-      message: "error"
-    })
-   }
-   else{
-    res.send({
-      message:"Your Order Has Been Placed"
-    })
-   }
-  })
-})
+app.post("/ClickToPay", (req, res) => {
+  const id = req.body.id;
+  let qry = `update tbl_booking set booking_status=2 where booking_id='${id}'`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({
+        message: "error",
+      });
+    } else {
+      res.send({
+        message: "Your Order Has Been Placed",
+      });
+    }
+  });
+});
 
-app.get("/Order",(req,res)=>{
-  let qry=`select * from tbl_booking where booking_status=2`
+app.get("/Order/:uid", (req, res) => {
+  const uid = req.params.uid;
+  let qry = `select * from tbl_booking where booking_status=2 and user_id='${uid}'`;
+  db.query(qry, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else if (results.length > 0) {
+      res.send({
+        orderdetailsread: results,
+      });
+    } else {
+      res.send({
+        orderdetailsread: [],
+      });
+    }
+  });
+});
+
+app.get("/OrderDetails/:id", (req, res) => {
+  const id = req.params.id;
+  let qry =
+    "select * from tbl_cart c inner join tbl_product p on c.product_id=p.product_id where booking_id=" +
+    id;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        OrderProductDetails: result,
+      });
+    } else {
+      res.send({
+        OrderProductDetails: [],
+      });
+    }
+  });
+});
+app.get("/ShopOrder/:id", (req, res) => {
+  const id = req.params.id;
+  let qry =
+    "SELECT * FROM `tbl_booking` b INNER JOIN tbl_cart c ON b.booking_id=c.booking_id INNER JOIN tbl_user u ON u.user_id=b.user_id INNER JOIN tbl_product p ON p.product_id=c.product_id WHERE shop_id=" +
+    id;
+  db.query(qry, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else if (results.length > 0) {
+      res.send({
+        shoporderread: results,
+      });
+    } else {
+      res.send({
+        shoporderread: [],
+      });
+    }
+  });
+});
+
+app.post("/CancelOrder", (req, res) => {
+  const productid = req.body.pid;
+  const bookingid = req.body.bid;
+  let qry = `delete from tbl_cart where booking_id='${bookingid}' and product_id='${productid}' `;
+  db.query(qry, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      let bookingqry = `select count(*) as tot from tbl_cart where booking_id='${bookingid}'`;
+      db.query(bookingqry, (err, results) => {
+        if (err) {
+          console.log(err);
+        } else {
+          if (results[0].tot > 0) {
+            res.send({
+              message: "True",
+              check: "fail",
+            });
+          } else {
+            let qry = `delete from tbl_booking where booking_id='${bookingid}' `;
+            db.query(qry, (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                res.send({
+                  message: "True",
+                  check: "pass",
+                });
+              }
+            });
+          }
+        }
+      });
+    }
+  });
+});
+
+app.post("/CartStatus", (req, res) => {
+  const id = req.body.id;
+  const status = req.body.status;
+  let qry = `update tbl_cart set cart_status='${status}' where cart_id='${id}'`;
+  db.query(qry, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({
+        message: "True",
+      });
+    }
+  });
+});
+
+app.post("/Feedback", (req, res) => {
+  const productid = req.body.productid;
+  const userid = req.body.userid;
+  const reviewcontent = req.body.reviewcontent;
+  const ratingcount = req.body.ratingcount;
+  let qry = `insert into tbl_review(product_id,user_id,review_content,review_count,review_date) values('${productid}',
+  '${userid}','${reviewcontent}','${ratingcount}',curdate()) `;
+  db.query(qry, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({
+        message: "Data Saved",
+      });
+    }
+  });
+});
+app.get("/Feedback", (req, res) => {
+  let qry = `select * from tbl_review`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        review: result,
+      });
+    } else {
+      res.send({
+        review: [],
+      });
+    }
+  });
+});
+
+app.post("/FeedbackGet", (req, res) => {
+  const uid = req.body.uid;
+  const pid = req.body.product_id;
+  let qry = `select * from tbl_review where product_id='${pid}' and user_id='${uid}'`;
+
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        message: "True",
+      });
+    } else {
+      res.send({
+        message: "False",
+      });
+    }
+  });
+});
+
+//ADMIN HOME PAGE
+app.get("/TotalEarnings", (req, res) => {
+  let qry = `SELECT SUM (booking_amount) as sum FROM tbl_booking WHERE booking_status=2 ; `;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        sum: result,
+      });
+    } else {
+      res.send({
+        sum: [],
+      });
+    }
+  });
+});
+app.get("/TotalOrders", (req, res) => {
+  let qry = `select count(booking_id) as bookingcount from tbl_booking where booking_status=2`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        bookingcount: result,
+      });
+    } else {
+      res.send({
+        bookingcount: [],
+      });
+    }
+  });
+});
+app.get("/TotalCustomers", (req, res) => {
+  let qry = `select count(user_id) as customercount from tbl_user`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        customercount: result,
+      });
+    } else {
+      res.send({
+        customercount: [],
+      });
+    }
+  });
+});
+
+app.get("/StockDetailProductDataGet/:id", (req, res) => {
+  const id = req.params.id;
+  let qry = `select * from tbl_product where product_id='${id}'`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        product: result,
+      });
+    } else {
+      res.send({
+        product: [],
+      });
+    }
+  });
+});
+
+app.post("/StockDetail", (req, res) => {
+  const stocknos = req.body.stocknos;
+  const productid = req.body.productid;
+  let qry = `insert into tbl_stock(stock_qty,stock_date,product_id) values('${stocknos}',curdate(),'${productid}')`;
+  db.query(qry, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({
+        message: "True",
+      });
+    }
+  });
+});
+
+app.get("/StockDetail/:pid", (req, res) => {
+  const pid = req.params.pid;
+  let qry = `select sum(stock_qty) as stockqty from tbl_stock where product_id='${pid}'`;
+  let qry1 = `select sum(cart_quantity) as cartqty from tbl_cart where cart_status=5 and product_id='${pid}'`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      var stockFinalSum = 0;
+      db.query(qry1, (err, results) => {
+        if (err) {
+          console.log(err);
+        } else if (results.length > 0) {
+          const stock = result[0].stockqty;
+          const cart = results[0].cartqty;
+          stockFinalSum = stock - cart;
+          res.send({
+            stock: stockFinalSum,
+          });
+        }
+      });
+    } else {
+      res.send({
+        stock: [],
+      });
+    }
+  });
+});
+
+app.get("/StockDetails", (req, res) => {
+  let qry =
+    "select * FROM `tbl_stock` s INNER JOIN `tbl_product` p ON s.product_id=p.product_id";
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({
+        error: "An error occurred while fetching stock details",
+      });
+    } else if (result.length > 0) {
+      const dataStocks = result.map((item) => ({
+        id: item.product_name.toString(), // Assuming stock_id is unique and needs to be a string       
+        value: item.stock_qty,
+      }));
+
+      res.send({
+        stocks: dataStocks,
+      });
+    } else {
+      res.send({
+        stocks: [],
+      });
+    }
+  });
+});
+app.get("/StockDetailss",(req,res)=>{
+  let qry=`SELECT c.category_name, SUM(s.stock_qty) AS total_stock_qty
+  FROM tbl_category c
+  INNER JOIN tbl_subcategory sc ON c.category_id = sc.category_id
+  INNER JOIN tbl_product p ON sc.subcategory_id = p.subcategory_id
+  INNER JOIN tbl_stock s ON p.product_id = s.product_id
+  GROUP BY c.category_name
+    `
   db.query(qry,(err,results)=>{
-   if(err){
-    console.log(err);
-   }
-   else if(results.length>0){
-    res.send({
-      orderdetailsread:results
-    })
-   }
-   else{
-    res.send({
-      orderdetailsread:[]
-    })
-   }
+    if(err){
+      console.log(err);
+    }
+    else if(results.length>0){
+      const dataStocks = results.map((item) => ({
+        id: item.category_name.toString(),   
+        value: item.total_stock_qty,
+      }));
+
+      res.send({
+        stocks: dataStocks,
+      });
+    }
   })
 })
 
-app.get("/OrderDetails/:id",(req,res)=>{
-  const id=req.params.id
-  let qry="select * from tbl_cart c inner join tbl_product p on c.product_id=p.product_id where booking_id=" + id;
+app.post('/Chatbot',(req,res)=>{
+  const uid=req.body.userid
+  const content=req.body.data
+let qry=`insert into tbl_chat(chat_date,chat_FromID,chat_Contant) values(curdate(),'${uid}','${content}')`
+db.query(qry,(err,result)=>{
+  if(err){
+    console.log(err);
+  }
+  else{
+    res.send({
+      message:"Data Saved"
+    })
+  }
+})
+})
+app.get('/Chatbotmessagedisplay',(req,res)=>{
+  let qry=`select * from tbl_chat`
   db.query(qry,(err,result)=>{
     if(err){
       console.log(err);
     }
     else if(result.length>0){
       res.send({
-         OrderProductDetails:result
-      })
-    }
-    else{
-     res.send({
-      OrderProductDetails:[]
-     })
-    }
-  })
-  
-})
-app.get("/ShopOrder/:id",(req,res)=>{
-  const id=req.params.id
-  let qry="SELECT * FROM `tbl_booking` b INNER JOIN tbl_cart c ON b.booking_id=c.booking_id INNER JOIN tbl_user u ON u.user_id=b.user_id INNER JOIN tbl_product p ON p.product_id=c.product_id WHERE shop_id="+id
-  db.query(qry,(err,results)=>{
-    if(err){
-    console.log(err);
-    }
-    else if(results.length>0){
-      res.send({
-        shoporderread:results
+        chat:result
       })
     }
     else{
       res.send({
-        shoporderread:[]
+        chat:[]
       })
     }
   })
 })
 
-app.post("/CancelOrder",(req,res)=>{
-  const productid=req.body.pid
-  const bookingid=req.body.bid
-  let qry=`delete from tbl_cart where booking_id='${bookingid}' and product_id='${productid}' `
-  db.query(qry,(err,results)=>{
+app.post(
+  "/Chatbotmessagedisplaymedia",
+  upload.fields([{ name: "chatmedia", maxCount: 1 }]),
+  (req, res) => {
+    const fileValue = JSON.parse(JSON.stringify(req.files));
+    const userid=req.body.uid
+    const photo = `http://127.0.0.1:${port}/images/${fileValue.chatmedia[0].filename}`;
+   let qry=`insert into tbl_chat(chat_FromID,chat_Media) values('${userid}','${photo}')`
+   db.query(qry,(err,results)=>{
     if(err){
       console.log(err);
     }
     else{
       res.send({
-        message:"True"
+        message:"Data Saved"
       })
     }
-  })
-})
+   })
+  }
+)
