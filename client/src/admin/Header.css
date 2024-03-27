@@ -1,0 +1,23 @@
+.header-container{
+    display: flex;
+
+}
+
+.adminlogo{
+    width: 38px;
+    margin-bottom: 21px;
+}
+
+.textalign{
+    padding-top: 10px;
+    font-size: x-large;
+}
+
+.right-side{
+    margin-left: auto;
+}
+.settingslogo{
+    width: 26px;
+    margin-right: 16px;
+    margin-bottom: 14px;
+}

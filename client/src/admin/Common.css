@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 110px;
+}
+
+
+/* Here Place & Subcategory Css Starts */
+.inputtable{
+  width: 365px;
+  height: 311px;
+  background-color: #eaebeb;
+  border-radius: 16px;
+}
+
+.row{
+  padding: 18px;
+  padding-inline: 50px;
+}
+.row>p{
+  padding-inline: 8px;
+}
+.submitbutton {
+  width: 290px;
+  height: 40px;
+  margin-inline: 36px;
+  color: white;
+  background-color: blue;
+  margin-top: 20px;
+  border: none;
+}
+.dropdown {
+  width: 262px;
+  height: 44px;
+  border-radius: 8px;
+}
+.textbox {
+  width: 262px;
+  height: 40px;
+  border-radius: 8px;
+} 
+.outputtable{
+  background-color: #eaebeb;
+  max-height: 311px;
+  overflow-y: scroll;
+  border-radius: 8px;
+}
+::-webkit-scrollbar {
+  display: none;
+  /* Main item for all scrolls  */
+}
+.columnmain{
+  display: flex;
+}
+.column{
+  padding: 10px;
+  width: 80px;
+}
+
+.column>button{
+  width: 80px;
+  background-color:#d60f12;
+  color: white;
+  border: none;
+}
+
+/* Here Place  & Subcategory css ends */
+
+/* Here District and Category css starts */
+.maincontainer{
+  display: flex;
+  justify-content:space-evenly
+}
+.tableinputconatiner{
+  width: 365px;
+  height: 311px;
+  background-color: #eaebeb;
+  border-radius: 16px;
+  margin-top: 120px;
+}
+
+.tableinputconatiner>div>button{
+  width: 290px;
+  height: 40px;
+  margin-inline: 36px;
+  color: white;
+  background-color: blue;
+  margin-top: 62px;
+  border: none;
+}
+.tableinputconatiner>div>input{
+  width: 262px;
+  height: 40px;
+  border-radius: 8px;
+  margin-inline: 6px;
+  margin-top: 78px;
+}
+.tableoutputconatiner{
+  width: 365px;
+  background-color: #eaebeb;
+  border-radius: 16px;
+  background-color: #eaebeb;
+  margin-top: 120px;
+  max-height: 311px;
+  overflow-y: scroll;
+ 
+}
+.tableoutputconatiner>div>button{
+  width: 80px;
+  background-color:#d60f12;
+  color: white;
+  border: none;
+}

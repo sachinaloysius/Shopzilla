@@ -1,0 +1,515 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+.headbox {
+  display: flex;
+}
+
+.Header {
+  grid-area: header;
+}
+
+.SubHeader {
+  grid-area: subheader;
+}
+
+.Main {
+  grid-area: Main;
+}
+
+.Footer {
+  grid-area: footer;
+}
+
+.guestContainer {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header header"
+    "subheader subheader subheader subheader subheader subheader subheader"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "footer footer footer footer footer footer header";
+}
+/* header style starts here */
+
+.brandnamestyle {
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 93px;
+  text-decoration: none;
+}
+
+.headbox > input {
+  height: 35px;
+  width: 600px;
+  border-radius: 33px;
+  border: none;
+  margin-left: 24px;
+}
+.headbox > input:focus {
+  border-radius: 5px;
+}
+.headbox > button {
+  margin-left: 43px;
+  width: 102px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #857f7f;
+}
+
+.signupStyle {
+  margin-left: 17px;
+  color: white;
+  font-size: 20px;
+}
+.signupStyle > a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+.Becomeasellerstyle {
+  margin-left: 16px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.Becomeasellerstyle > a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+/* Header starts ends here */
+/* Subheader starts from here */
+.subHeadingcontainer {
+  position: relative;
+  top: 45px;
+  padding: 17px;
+  border-bottom: 1px solid#ebe6e6;
+  padding-inline: 88px;
+  margin-bottom: 10px;
+}
+.subheadBox > div > div > img {
+  float: left;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.footerbox {
+  padding: 43px;
+  background-color: #064469;
+}
+.Boxcontainer {
+  width: fit-content;
+  height: fit-content;
+  padding: 20px 0px;
+  border: 1px solid #e0dbdb;
+  font-family: Arial, sans-serif;
+}
+.createaccountmaincontainer {
+  width: fit-content;
+}
+.createaccountmaincontainer > p {
+  margin-bottom: 15px;
+  margin-top: 40px;
+}
+.createaccountmaincontainer > p > a {
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.label {
+  font-size: 13px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  margin-top: 12px;
+  margin-inline: 24px;
+}
+.label > input {
+  width: 296px;
+  height: 25px;
+  border-radius: 29px;
+}
+
+.labels {
+  font-size: 13px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  margin-top: 12px;
+  margin-inline: 24px;
+}
+
+.labels > select {
+  margin-top: 3px;
+  width: 50px;
+  height: 28px;
+  text-align: center;
+  border-radius: 28px;
+}
+.labels > input {
+  margin-left: 5px;
+  width: 237px;
+  height: 27px;
+  border-radius: 20px;
+}
+
+.label > button {
+  margin-top: 40px;
+  width: 307px;
+  margin-inline: -4px;
+  height: 33px;
+  background-color: #064469;
+  color: white;
+  cursor: pointer;
+}
+
+.label > .districtdropdownstyle {
+  margin-inline: 11px;
+  width: 126px;
+  margin-right: 31px;
+  height: 32px;
+  border-radius: 10px;
+}
+.label > .placedropdownstyle {
+  width: 126px;
+  height: 32px;
+  border-radius: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 20px;
+  border: none;
+  color: #4c4848;
+  background-color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+/* Create Account style end here  */
+/* Become a seller style starts here  */
+
+.box_containershop {
+  display: flex;
+  font-family: Arial, sans-serif;
+}
+.closebuttonforShop {
+  position: absolute;
+  right: 5px;
+  width: 29px;
+  border: none;
+  background: #064469;
+  color: white;
+  font-size: x-large;
+  cursor: pointer;
+}
+.right-sidebox {
+  background-color: #064469;
+  width: 300px;
+}
+.shopstyle {
+  height: 34px;
+  width: 252px;
+  margin-inline: 11px;
+  border-radius: 18px;
+  padding-inline: 10px;
+}
+.countrycodestyle {
+  width: 47px;
+  height: 34px;
+  border-radius: 8px;
+  margin-inline: 14px;
+}
+.mobilenumberstyle {
+  width: 220px;
+  height: 35px;
+  border-radius: 23px;
+  margin-left: -11px;
+}
+.textareastyle {
+  margin-inline: 9px;
+  width: 280px;
+  height: 100px;
+  border-radius: 11px;
+}
+.selectstyle {
+  height: 34px;
+  width: 255px;
+  margin-inline: 21px;
+  border-radius: 18px;
+  padding-inline: 10px;
+}
+
+.shopbuttonstyle {
+  width: 260px;
+  height: 35px;
+  margin-inline: 20px;
+  background: red;
+  color: wheat;
+  font-size: larger;
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
+}
+
+/* Login style  */
+.login-container {
+  width: fit-content;
+  height: 444px;
+  border: 1px solid #e6dfdf;
+}
+.login-container > .logoalign {
+  background-color: #064469;
+  padding: 35px;
+  color: white;
+  font-size: xx-large;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.remark > input {
+  width: 300px;
+  height: 32px;
+  border-radius: 6px;
+  border-color: antiquewhite;
+  margin-left: 9px;
+  margin-right: 14px;
+}
+.remark > p {
+  margin-inline: 8px;
+  font-size: large;
+  margin-top: 19px;
+}
+
+.login-container > button {
+  margin-top: 57px;
+  margin-inline: 25px;
+  width: 259px;
+  height: 34px;
+  color: white;
+  background-color: #064469;
+}
+.closebuttonLogin {
+  position: absolute;
+  right: -5px;
+  margin-top: -18px;
+  width: 38px;
+  border: none;
+  color: black;
+  background-color: white;
+  font-size: medium;
+}
+
+/* Product Details Style */
+.productdetailsStyle {
+  margin-top: -7px;
+  margin-left: 39px;
+}
+/* CART  Style Starts from Here */
+.Cart-Container {
+  position: relative;
+  top: 40px;
+  margin: 20px;
+}
+.Cart-TextAlign {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: xx-large;
+}
+.cart-ColumnHeading {
+  width: 16.6%;
+  color: #6f6b6b;
+  border-bottom: 1px solid #e3dbdb;
+  padding: 10px;
+}
+.cart-Column {
+  width: 16.6%;
+  padding: 10px;
+}
+.cart-Column > input[type="number"] {
+  width: 50px;
+}
+
+.rupee::before {
+  content: "₹ ";
+}
+.cart-Column > button {
+  border: none;
+  width: 76px;
+  height: 22px;
+  background-color: #a44;
+  color: antiquewhite;
+  cursor: pointer;
+}
+
+.checkoutbtn {
+  width: 10pc;
+  height: 2pc;
+  border: none;
+  background-color: orange;
+  color: white;
+  border-radius: 2px;
+}
+
+/* Order Page Container */
+
+.OrderPage_Container {
+  position: relative;
+  top: 35px;
+}
+
+.OrderDetails_Conatiner {
+  position: relative;
+  top: 36px;
+  background-color: #f1f3f6;
+  height: 630px;
+  display: flex;
+}
+
+.ReviewBtn {
+  position: absolute;
+  right: 7px;
+  top: 8px;
+  width: 41px;
+  background-color: red;
+  color: white;
+  border: none;
+}
+
+.OrderDetail_LeftSideContainer {
+  margin-top: 18px;
+  margin-left: 30px;
+  width: 200px;
+  background-color: white;
+  height: 350px;
+  border-radius: 3px;
+}
+
+.OrderDetail_RightSideContainer > div > input {
+  height: 38px;
+  width: 950px;
+  border: 1px solid #dbdbdb;
+  padding-inline: 12px;
+  margin-top: 17px;
+  margin-left: 8px;
+}
+.OrderDetail_RightSideContainer > div > button {
+  background: #2874f0;
+  color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+  height: 39px;
+  width: 130px;
+  margin-left: 2px;
+}
+.OrderDetail_LeftSideContainer > .Main_Heading {
+  font-weight: 500;
+  font-size: 20px;
+  margin-inline: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Roboto, Arial, sans-serif;
+  letter-spacing: 0;
+  border-bottom: 1px solid #dbd2d2;
+  padding-bottom: 6px;
+}
+.OrderDetail_LeftSideContainer > .Order_Heading {
+  font-family: Roboto, Arial, sans-serif;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 14px;
+  margin-inline: 12px;
+}
+.checkbox_Holder {
+  margin-inline: 15px;
+  margin-top: 10px;
+}
+.OrderDetail_LeftSideContainer > .order_TimeHeading {
+  font-family: Roboto, Arial, sans-serif;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 14px;
+  margin-inline: 12px;
+  margin-top: 10px;
+}
+.orderItemMainContainer {
+  margin-top: 10px;
+  margin-inline: 10px;
+}
+.Order_ContainerItem {
+  width: 1150px;
+  height: 115px;
+  background-color: white;
+  border: 1px solid #dbdbdb;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.Order_ContainerItem {
+  display: flex;
+  justify-content: space-evenly;
+  justify-content: space-around;
+  align-items: center;
+}
+.Order_ContainerItem > div > .rate_design {
+  font-size: larger;
+}
+.rate_design::before {
+  content: "₹";
+}
+
+.userprofilestyle {
+  width: 30px;
+  height: 25px;
+  border-radius: 50%;
+}
+.usernamestyle {
+  font-size: large;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+#propicUserDropdownMainHolder:hover .dropdownn {
+  display: block;
+  z-index: 999;
+}
+
+#propicUserDropdownMainHolder > .profile {
+  display: flex;
+}
+.dropdownn {
+  background-color: #a44;
+  position: fixed;
+  right: 10px;
+  top: 30px;
+  width: 130px;
+  display: none;
+  color: white;
+  text-align: end;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.profile {
+  position: fixed;
+  right: 10px;
+}
+
+.UserProfileMainHolder{
+  position:  relative;
+  top: 40px;
+  background-color: #172337;
+}

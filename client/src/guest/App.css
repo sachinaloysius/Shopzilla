@@ -1,0 +1,716 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+.Header {
+  grid-area: header;
+}
+
+.SubHeader {
+  grid-area: subheader;
+}
+
+.Main {
+  grid-area: Main;
+}
+
+.Footer {
+  grid-area: footer;
+}
+
+.guestContainer {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header header"
+    "subheader subheader subheader subheader subheader subheader subheader"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "main main main main main main main"
+    "footer footer footer footer footer footer header";
+}
+/* header style starts here */
+.headbox {
+  padding: 10px;
+  background-color: #0a8ddb;
+  padding-inline: 55px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+
+.brandnamestyle {
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 93px;
+  text-decoration: none;
+}
+
+.search_container {
+  height: 35px;
+  width: 600px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 24px;
+  padding-inline: 20px;
+  outline: none;
+}
+
+.recent_Search {
+  position: absolute;
+  background-color: white;
+  box-shadow: -5px 0px 5px rgba(0, 0, 0, 0.1), 5px 5px 5px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  width: 640px;
+  margin-left: -634px;
+  top: 49px;
+  border-top: 1px solid #ccc;
+  display: none;
+}
+.search_container:focus-within.recent_Search {
+  display: block;
+}
+.headbox > button {
+  margin-left: 43px;
+  width: 102px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #857f7f;
+}
+
+.signupStyle {
+  margin-left: 17px;
+  color: white;
+  font-size: 20px;
+}
+.signupStyle > a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+.Becomeasellerstyle {
+  margin-left: 16px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.Becomeasellerstyle > a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+/* Header starts ends here */
+/* Subheader starts from here */
+.subHeadingcontainer {
+  position: relative;
+  top: 38px;
+  padding: 17px;
+  border-bottom: 1px solid#ebe6e6;
+  padding-inline: 88px;
+  margin-bottom: 10px;
+}
+.subheadBox > div > div > img {
+  float: left;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+/* .footerbox{
+    position: fixed;
+    width: 100%;
+    bottom:-50px;
+    padding: 43px;
+    background-color: #2c2b2b;
+} */
+.Boxcontainer {
+  width: fit-content;
+  height: fit-content;
+  padding: 20px 0px;
+  border: 1px solid #e0dbdb;
+  font-family: Arial, sans-serif;
+}
+
+.Banner {
+  position: relative;
+  top: 50px;
+}
+.HomePage-Main {
+  position: relative;
+  top: 38px;
+  background-color: #f4f2f2;
+}
+
+.box-PosterMain {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  top: 3px;
+  background-color: #f4f2f2;
+}
+.boxPoster {
+  width: 350px;
+  height: 440px;
+  background-color: white;
+  margin-bottom: 30px;
+}
+.boxPoster > p {
+  padding-top: 18px;
+  font-size: larger;
+  padding-inline: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #212121;
+}
+.boxPosterFirstRow {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.boxPosterFirstRowMobileName {
+  display: flex;
+  justify-content: space-evenly;
+}
+.boxPosterFirstRowMobileName > span {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #474545;
+}
+.boxPosterFirstRowRate {
+  display: flex;
+  justify-content: space-evenly;
+}
+.boxPosterFirstRowRate > .Rate {
+  font-size: larger;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #212121;
+}
+/*  */
+.boxPosterSecondRow {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.boxPosterSecondRowMobileName {
+  display: flex;
+  justify-content: space-evenly;
+}
+.boxPosterSecondRowMobileName > span {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #474545;
+}
+.boxPosterSecondRowRate {
+  display: flex;
+  justify-content: space-evenly;
+}
+.boxPosterSecondRowRate > .Rate {
+  font-size: larger;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #212121;
+}
+
+.boxPosterLast {
+  width: 350px;
+  height: 440px;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+.boxPosterLast > p {
+  font-size: larger;
+  padding-inline: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #212121;
+  padding-top: 10px;
+}
+.boxPosterFirstRowLast {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.boxBannerLast {
+  position: relative;
+  top: -10px;
+  margin-left: 17px;
+  background-color: white;
+  width: 1504px;
+  height: 284px;
+}
+.boxBannerLast > p {
+  font-size: larger;
+  padding-inline: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #212121;
+  padding-top: 20px;
+}
+.boxBannerLast > p > span {
+  font-size: 13px;
+  font-weight: lighter;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  padding-inline: 10px;
+  color: #007185;
+}
+
+.createaccountmaincontainer {
+  width: fit-content;
+}
+.createaccountmaincontainer > p {
+  margin-bottom: 15px;
+  margin-top: 40px;
+}
+.createaccountmaincontainer > p > a {
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.label {
+  font-size: 13px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  margin-top: 12px;
+  margin-inline: 24px;
+}
+.label > input {
+  width: 296px;
+  height: 25px;
+  border-radius: 29px;
+}
+
+.labels {
+  font-size: 13px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  margin-top: 12px;
+  margin-inline: 24px;
+}
+
+.labels > select {
+  margin-top: 3px;
+  width: 50px;
+  height: 28px;
+  text-align: center;
+  border-radius: 28px;
+}
+.labels > input {
+  margin-left: 5px;
+  width: 237px;
+  height: 27px;
+  border-radius: 20px;
+}
+
+.label > button {
+  margin-top: 40px;
+  width: 307px;
+  margin-inline: -4px;
+  height: 33px;
+  background-color: #064469;
+  color: white;
+  cursor: pointer;
+}
+
+.label > .districtdropdownstyle {
+  margin-inline: 11px;
+  width: 126px;
+  margin-right: 31px;
+  height: 32px;
+  border-radius: 10px;
+}
+.label > .placedropdownstyle {
+  width: 126px;
+  height: 32px;
+  border-radius: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 20px;
+  border: none;
+  color: #4c4848;
+  background-color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+/* Create Account style end here  */
+/* Become a seller style starts here  */
+
+.box_containershop {
+  display: flex;
+  font-family: Arial, sans-serif;
+}
+.closebuttonforShop {
+  position: absolute;
+  right: 5px;
+  width: 29px;
+  border: none;
+  background: #064469;
+  color: white;
+  font-size: x-large;
+  cursor: pointer;
+}
+.right-sidebox {
+  background-color: #064469;
+  width: 300px;
+}
+.shopstyle {
+  height: 34px;
+  width: 252px;
+  margin-inline: 11px;
+  border-radius: 18px;
+  padding-inline: 10px;
+}
+.countrycodestyle {
+  width: 47px;
+  height: 34px;
+  border-radius: 8px;
+  margin-inline: 14px;
+}
+.mobilenumberstyle {
+  width: 220px;
+  height: 35px;
+  border-radius: 23px;
+  margin-left: -11px;
+}
+.textareastyle {
+  margin-inline: 9px;
+  width: 280px;
+  height: 100px;
+  border-radius: 11px;
+}
+.selectstyle {
+  height: 34px;
+  width: 255px;
+  margin-inline: 21px;
+  border-radius: 18px;
+  padding-inline: 10px;
+}
+
+.shopbuttonstyle {
+  width: 260px;
+  height: 35px;
+  margin-inline: 20px;
+  background: red;
+  color: wheat;
+  font-size: larger;
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
+}
+
+/* Login style  */
+.login-container {
+  width: fit-content;
+  height: 444px;
+  border: 1px solid #e6dfdf;
+}
+.login-container > .logoalign {
+  background-color: #064469;
+  padding: 35px;
+  color: white;
+  font-size: xx-large;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.remark > input {
+  width: 300px;
+  height: 32px;
+  border-radius: 6px;
+  border-color: antiquewhite;
+  margin-left: 9px;
+  margin-right: 14px;
+}
+.remark > p {
+  margin-inline: 8px;
+  font-size: large;
+  margin-top: 19px;
+}
+
+.login-container > button {
+  margin-top: 57px;
+  margin-inline: 25px;
+  width: 259px;
+  height: 34px;
+  color: white;
+  background-color: #064469;
+}
+.closebuttonLogin {
+  position: absolute;
+  right: -5px;
+  margin-top: -18px;
+  width: 38px;
+  border: none;
+  color: black;
+  background-color: white;
+  font-size: medium;
+}
+/* Mobile Style Starts Here */
+.product_Heading > a {
+  text-decoration: none;
+}
+.Mobile_mainConatiner {
+  position: relative;
+  top: 29px;
+  background-color: #f4f2f2;
+  display: flex;
+  width: 1534px;
+  height: fit-content;
+}
+.left_SideConatiner {
+  width: 222px;
+  background-color: white;
+  height: 990px;
+  position: relative;
+  top: 8px;
+  margin-inline: 8px;
+}
+.filter_Style {
+  padding-top: 16px;
+  padding-inline: 14px;
+  font-size: larger;
+  color: #212121;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  letter-spacing: 0.8px;
+}
+.price_Style {
+  padding-inline: 18px;
+  padding-top: 12px;
+  border-top: 1px solid rgb(214, 212, 212);
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  height: 116px;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #212121;
+  border-bottom: 1px solid rgb(214, 212, 212);
+}
+.brand_Style {
+  padding-inline: 18px;
+  padding-top: 12px;
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #212121;
+  border-bottom: 1px solid rgb(214, 212, 212);
+}
+
+.search_Brand {
+  width: 95%;
+  border-width: 0 0 2px;
+  border-color: #e0e0e0;
+  height: 20px;
+  font-size: 14px;
+  padding: 0 0 0 21px;
+  color: #878787;
+  outline: none;
+}
+.search_Brand:focus {
+  color: #2874f0;
+  cursor: default;
+  border: none;
+  border-bottom: 2px solid #2874f0;
+  font-weight: 500;
+}
+
+.right_sideConatiner {
+  width: 1272px;
+  background-color: white;
+  height: 990px;
+  position: relative;
+  top: 8px;
+  overflow-x: scroll;
+  margin-inline: 7px;
+}
+.subheader_right_sideConatiner {
+  display: flex;
+  border-bottom: 1px solid rgb(214, 212, 212);
+}
+.sort_Style {
+  padding-inline: 18px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #212121;
+}
+.Selected_SubheadingStyle {
+  margin-top: 18px;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #2874f0;
+  cursor: default;
+  border-bottom: 2px solid #2874f0;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 15px;
+}
+.right_SubheadingStyle {
+  margin-top: 18px;
+  letter-spacing: 0.3px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 15px;
+}
+/* Here Product Style starts from here */
+.iphone13mini128gb_MainContainer {
+  position: relative;
+  top: 30px;
+  background-color: #f4f2f2;
+  height: fit-content;
+}
+.iphone13mini128gbHolderContainer {
+  position: relative;
+  background-color: white;
+  width: 90%;
+  left: 75px;
+  height: fit-content;
+  display: flex;
+}
+.carousel-container {
+  width: 20%;
+  padding-top: 20px;
+  padding-inline: 60px;
+  border: 1px solid #ebe6e6;
+  height: 524px;
+  margin-right: 4px;
+}
+.Mobile_Productstyle {
+  height: 200px;
+  padding-inline: 70px;
+  margin-top: 22px;
+}
+.Product_Style {
+  display: flex;
+}
+.product_Heading {
+  font-size: 18px;
+  font-family: Roboto, Arial, sans-serif;
+  letter-spacing: 0;
+  padding-top: 25px;
+}
+.Product_Container {
+  display: grid;
+  grid-template-columns: 25% 30% 20%;
+  grid-gap: 10px;
+}
+
+.Product_RightContainer {
+  border: 1px solid #ebe6e6;
+  overflow-x: scroll;
+  height: 544px;
+}
+.product_PriceStyle {
+  padding-inline: 287px;
+  padding-top: 32px;
+  font-size: x-large;
+  font-weight: 600;
+  letter-spacing: 1.7px;
+  font-family: Roboto, Arial, sans-serif;
+}
+.avilableoffer_Style {
+  margin-top: 17px;
+  font-size: large;
+  padding-inline: 97px;
+  margin-bottom: 17px;
+}
+.offerimage_Product {
+  width: 18px;
+  height: 18px;
+  padding-inline: 98px;
+}
+.offerimg_Firstline {
+  margin-inline: 130px;
+  font-weight: 500;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 15px;
+}
+.offerimg_Secondline {
+  margin-inline: -121px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: smaller;
+}
+.addtocart_Style {
+  background-color: #ff9f00;
+  color: white;
+  padding: 17px;
+  width: 184px;
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: bold;
+  margin-left: 231px;
+  margin-top: 4px;
+  cursor: grabbing;
+}
+.brand_nameProduct {
+  padding-inline: 9pc;
+  padding-top: 20px;
+  margin-bottom: -22px;
+  font-size: 23px;
+  font-family: Roboto, Arial, sans-serif;
+}
+.Product_Description {
+  display: grid;
+  grid-template-columns: 15% 80%;
+  gap: 10px;
+  margin-top: 20px;
+  margin-inline: 102px;
+}
+.discription_Title {
+  color: #878787;
+}
+.discription_Details {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 12px;
+}
+
+.showpassword_btnStyle{
+  position: absolute;
+ margin-top: -15px;
+  right: 45px;
+  width: 20px;
+}

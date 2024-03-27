@@ -1,0 +1,137 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.shop-container{
+    display: flex;
+    justify-content:space-evenly;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+}
+.shop-container>ul{
+    display: flex;
+}
+.ulstyle{
+    list-style: none;
+    padding: 20px;
+    font-size: larger;
+    color: #0c95e4;
+    text-decoration: none;
+}
+
+.shoplogoutBtn{
+    border: none;
+    font-size: larger;
+    color: #0c95e4;
+}
+.shoplogoutBtn{
+    border: none;
+}
+.shoplogoutBtn:hover{
+    color: red;
+    cursor: pointer;
+}
+.shop-container>ul>li{
+    list-style: none;
+    margin-top: 22px;
+}
+.ulstyle:hover{
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+
+.Shophome-container{
+    background-color: #0c95e4;
+    padding: 113px;
+    position: relative;
+    top: 64px;
+}
+.Shophome-container>button{
+    width: 172px;
+    height: 40px;
+    background-color: #e6e610;
+    border: none;
+    border-radius: 4px;
+    font-size: large;
+    color: #4d4b4b;
+}
+.productmaincontainer{
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    top: 80px;
+    
+}
+.productbox{
+  width: 447px;
+  height: 622px;
+  background-color: #0c95e4;
+  border: 1px solid black;
+
+}
+
+.Productsmaincontainer{
+    position: relative;
+    top: 80px;
+}
+
+.Prow{
+    display: flex;
+    background-color: #e6e610;
+    width: 500px;
+    height: 400px;
+    border: 1px solid black;
+}
+
+.GalleryMain{
+    position: relative;
+    top:71px
+    
+}
+
+.Shop_OrderConatiner{
+    position: relative;
+    top: 70px;
+}
+.StockDetailsMainContainer{
+   position: relative;
+   top: 72px;
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.StockDetailsInputConatiner{
+    width: 500px;
+    height: 485px;
+    border: 1px solid black;
+    border-radius: 33px;
+}
+.StockDetailsInputROW{
+    padding-inline: 50px;
+    margin: 30px;
+}
+.StockDetailsInputROW>input{
+    padding: 8px;
+    padding-inline: 24px;
+}
+.StockDetailsInputBtn{
+    border: 1px solid;
+    margin-inline: 113px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 33px;
+    color: blue;
+    cursor: pointer;
+}
+
+.shop_profilepicturestyle{
+    border-radius: 50%;
+    width: 5%;
+}
+
