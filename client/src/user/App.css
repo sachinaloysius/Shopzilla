@@ -368,6 +368,7 @@
 
 /* Order Page Container */
 
+
 .OrderPage_Container {
   position: relative;
   top: 35px;
@@ -472,6 +473,21 @@
   content: "₹";
 }
 
+.Ordercancelbtnstyle{
+  border: none;
+  background-color: red;
+  color: white;
+  width: 96px;
+  height: 35px;
+  border-radius: 3px;
+}
+.Ordercancelbtnstyle:hover{
+  cursor: pointer;
+}
+.Ordercancelbtnstyle:active{
+  opacity: 0.5;
+}
+
 .userprofilestyle {
   width: 30px;
   height: 25px;
@@ -488,11 +504,13 @@
   z-index: 999;
 }
 
+
+
 #propicUserDropdownMainHolder > .profile {
   display: flex;
 }
 .dropdownn {
-  background-color: #a44;
+  background-color:#2874f0;
   position: fixed;
   right: 10px;
   top: 30px;
@@ -511,5 +529,107 @@
 .UserProfileMainHolder{
   position:  relative;
   top: 40px;
-  background-color: #172337;
+ display: flex;
+ background-color: #f0f0f0;
+
+}
+.UserProfileHolder{
+  margin: 15px 0 0 100px;
+  display: flex;
+}
+
+.profileNameHolder{
+  display: flex;
+  border: 1px solid transparent;
+  width: 300px;
+  height: 80px;
+  background-color: white;
+}
+
+.Account_settingHolderUP{
+  margin-top: 10px;
+  border: 1px solid transparent;
+  height: 150px;
+  background-color: white;
+}
+
+.subLists{
+ margin: 13px 0 0 45px; 
+}
+.subLists:active{
+  color: #2874f0;
+  background-color: #f5faff;
+}
+
+.Logout_UP{
+  display: flex;
+  margin-top: 2px;
+  border: 1px solid transparent;
+  height: 50px;
+  background-color: white;
+}
+
+
+.Logout_UP>h4{
+  margin-top: 8px;
+  margin-left: 7px;
+  letter-spacing: 1px;
+color: #6f6b6b;
+}
+.Logout_UP>h4:hover{
+  cursor: pointer;
+  color: #2874f0;
+}
+
+.UserProfilerightHolder{
+ height: 660px;
+  width: 900px;
+  background-color: white;
+  margin-left: 15px;
+}
+
+.Headingstyle_UP{
+  margin: 30px 0 0 50px ;
+  font-size: larger;
+  font-family: Roboto, Arial, sans-serif;
+  font-weight:500 ;
+  letter-spacing: 0.5px;
+}
+.HeadingEditStyle_UP{
+   margin: 31px 0 0 30px ;
+   font-family: Roboto, Arial, sans-serif;
+   font-size:small;
+   font-weight:700 ;
+   letter-spacing: 0.5px;
+   color: #2874f0;
+}
+.HeadingEditStyle_UP:hover{
+  cursor: pointer;
+}
+
+.commonrow_UP{
+  margin: 30px 0 0 50px ;
+}
+.commonrow_UP>input{
+   padding:7px;
+height: 38px;
+width: 250px;
+border-radius: 2px;
+margin-right: 14px;
+border: 1px solid;
+border-color: #857f7f;
+background-color: #f1f1f1;
+}
+
+.EditbuttonOnProfile{
+  width: 133px;
+  height: 52px;
+  color: white;
+  font-size: larger;
+  background-color: #2874f0;
+  border: none;
+  border-radius: 2px;
+}
+.EditbuttonOnProfile:hover{
+  cursor: pointer;
 }

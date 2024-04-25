@@ -1184,12 +1184,11 @@ app.get("/SubcategoryMobileList/:id", (req, res) => {
 });
 app.get("/priceRangeList/:id/:cid/", (req, res) => {
   // const id = parseInt(req.params.id);
-  const id=req.params.id;
-  console.log( typeof id);
+  const id = req.params.id;
+  console.log(typeof id);
   const categoryid = req.params.cid;
   let qry = `SELECT * FROM tbl_product AS P INNER JOIN tbl_subcategory AS SC ON P.subcategory_id=SC.subcategory_id WHERE category_id=(${categoryid}) AND product_price <= (${id}) `;
- 
- 
+
   db.query(qry, (err, result) => {
     if (err) {
       console.log(err);
@@ -1205,61 +1204,117 @@ app.get("/priceRangeList/:id/:cid/", (req, res) => {
   });
 });
 
-app.get('/Products',(req,res)=>{
-let qry=`select * from tbl_product`
-db.query(qry,(err,results)=>{
-  if(err){
-    console.log(err);
-  }
-  else if(results.length>0){
-    res.send({
-      products:results
-    })
-  }
-  else{
-    res.send({
-      products:[]
-    })
-  }
-})
-})
+app.get("/Products", (req, res) => {
+  let qry = `select * from tbl_product`;
+  db.query(qry, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else if (results.length > 0) {
+      res.send({
+        products: results,
+      });
+    } else {
+      res.send({
+        products: [],
+      });
+    }
+  });
+});
 
-app.get('/UserDetails:id',(req,res)=>{
-  const uid=req.params.id
-  let qry=`select * from tbl_user where user_id='${uid}'`
-  db.query(qry,(err,results)=>{
+
+app.get("/ShopDetailed/:id", (req, res) => {
+  const shopid = req.params.id;
+  let qry = `select * from tbl_shop where shop_id='${shopid}'`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        shop: result,
+      });
+    } else {
+      res.send({
+        shop: [],
+      });
+    }
+  });
+});
+
+app.get("/UserDetails/:id", (req, res) => {
+  const uid = req.params.id;
+  console.log("hai");
+  let qry = `select * from tbl_user where user_id="${uid}"`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else if (result.length > 0) {
+      res.send({
+        User: result,
+      });
+    } else {
+      res.send({
+        User: [],
+      });
+    }
+  });
+});
+
+app.put("/CancelOrder/:id", (req, res) => {
+  const id = req.params.id;
+  let qry = `update tbl_cart set cart_status=6 where cart_id='${id}' `;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({
+        message: "Order Cancelled",
+      });
+    }
+  });
+});
+
+app.put('/UpdateUserDetails/',(req,res)=>{
+  const fullname=req.body.fullname;
+  const email=req.body.email;
+  const mobile=req.body.mobile;
+  const uid=req.body.userid
+  let qry=`update tbl_user set user_name='${fullname}',user_email='${email}',user_contact='${mobile}' where user_id='${uid}' `
+  db.query(qry,(err,result)=>{
     if(err){
       console.log(err);
     }
-    else if(results.length>0){
-      res.send({
-        user:results
-      })
-    }
     else{
       res.send({
-        user:[]
+        message:"Data Updated"
       })
     }
   })
 })
 
-app.get('/ShopDetailed/:id',(req,res)=>{
-  const shopid=req.params.id
- let qry=`select * from tbl_shop where shop_id='${shopid}'`
- db.query(qry,(err,result)=>{
-  if(err){
-    console.log(err);
-  }
-  else if(result.length>0){
+app.get("/ProductSearch:input", (req, res) => {
+  const inputdata = req.params.input;
+  let qry = `select * from tbl_product where product_name='${inputdata}'`;
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
     res.send({
-      shop:result
+      search:result
     })
-  }
-  else{
-    res.send({
-      shop:[]
-    })
-  }
- })
+    }
+  });
+});
+app.get('/RatingcountBtn',(req,res)=>{
+  let qry=`SELECT * FROM tbl_review r INNER JOIN tbl_product p ON r.product_id=p.product_id WHERE r.review_id >=4`
+  db.query(qry,(err,results)=>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(results);
+      res.send({
+        mobile:results
+      })
+    }
+  })
 })

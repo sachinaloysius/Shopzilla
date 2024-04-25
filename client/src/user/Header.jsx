@@ -8,11 +8,14 @@ const UserID = sessionStorage.getItem("uid");
 export default function Header({cartdisplaycount}) {
   const [productDetails, setProductDetails] = useState([]);
   const [userName, setUserName] = useState([]);
+  const[inputData,setInputData]=useState()
+  const[searchedResults,setSearchedResults]=useState([])
   const history = useNavigate();
-
+  const seachedProduct=useNavigate()
   useEffect(() => {
     getProductDetails();
     getUserDetails();
+    
   }, []);
 
 
@@ -28,10 +31,10 @@ export default function Header({cartdisplaycount}) {
 
   const getUserDetails = () => {
     axios
-      .get("http://localhost:4777/UserDetails" + UserID)
+      .get("http://localhost:4777/UserDetails/" + UserID)
       .then((response) => response.data)
       .then((data) => {
-        setUserName(data.user);
+        setUserName(data.User);
       });
   };
 
@@ -56,6 +59,17 @@ export default function Header({cartdisplaycount}) {
       history("/");
     }
   }, [history]);
+
+  const searchBTNnaction=()=>{
+    axios.get('http://localhost:4777/ProductSearch'+ inputData)
+    .then((response)=>response.data)
+    .then((data)=>{
+      const value = data.search[0].product_id
+      seachedProduct("/User/Phone/"+value)
+      
+    })
+  }
+
   return (
     <div>
       <div className="headbox">
@@ -68,22 +82,26 @@ export default function Header({cartdisplaycount}) {
           type="text"
           list="idpassedtosearch"
           placeholder="Search for products.."
-          className="search_container"
+          className="search_container" 
+          onKeyUp={(e)=>setInputData(e.target.value)}
+          
         />
         <datalist id="idpassedtosearch">
           {productDetails.map((row, key) => (
-            <option value={row.product_name}>{row.product_name}</option>
+            <option key={key} value={row.product_name}>{row.product_name}</option>
           ))}
         </datalist>
         <img
           src={Searchlogo}
           style={{
-            width: "25px",
-            height: "25px",
-            marginBottom: "-8px",
-            marginLeft: "-31px",
+            width: "50px",
+            height: "28px",
+            marginBottom: "-3px",
+            marginLeft: "-53px",
           }}
           alt=""
+          onClick={searchBTNnaction}
+          
         />
         <Link
           style={{
@@ -143,14 +161,14 @@ export default function Header({cartdisplaycount}) {
         </Link>
         <div id="propicUserDropdownMainHolder">
           {userName.map((row, key) => (
-            <div className="profile">
+            <div className="profile" key={key}>
               <img src={row.user_photo} alt="" className="userprofilestyle" />
               <p className="usernamestyle">{row.user_name}</p>
             </div>
           ))}
 
           <div className="dropdownn">
-            <Link to='Profile'><div style={{ margin: "5px" }}>Profile</div></Link>
+            <Link to='Profile' style={{textDecoration:'none'}}><div style={{ margin: "5px",color:'white' }}>Profile</div></Link>
             <div style={{ margin: "5px" }} onClick={LogoutBTNaction}>
               Logout
             </div>

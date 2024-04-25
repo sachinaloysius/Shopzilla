@@ -3,8 +3,8 @@ import Modal from "react-modal";
 import Review from "./Review";
 import axios from "axios";
 
-export default function OrderItems({ row }) {
-  const uid  = sessionStorage.getItem('uid');
+export default function OrderItems({ row, getProductDetails }) {
+  const uid = sessionStorage.getItem("uid");
   const { product_name, product_image, product_price, product_id } = row;
   const [reviewmodelOpen, setReviewmodelOpen] = React.useState(false);
   const [checkreview, setCheckreview] = useState([]);
@@ -15,7 +15,6 @@ export default function OrderItems({ row }) {
         product_id: product_id,
         uid: uid,
       };
-      console.log(dat);
       axios.post("http://localhost:4777/FeedbackGet", dat).then((response) => {
         console.log(response);
         if (response.data.message === "True") {
@@ -46,32 +45,54 @@ export default function OrderItems({ row }) {
     setReviewmodelOpen(false);
   }
 
+  const CancelOrderBtnAction = (id) => {
+    axios.put(`http://localhost:4777/CancelOrder/` + id).then((response) => {
+      if (response.data.message === "Order Cancelled") {
+        getProductDetails();
+        alert("Order Cancelled");
+      } else {
+        alert("Failed");
+      }
+    });
+  };
   return (
     <div className="orderItemMainContainer">
       <div className="Order_ContainerItem">
         <div>
           <img src={product_image} width="80px" alt="" />
         </div>
-        <div style={{ fontSize: "large" ,width:"250px"}}>{product_name}</div>
+        <div style={{ fontSize: "large", width: "250px" }}>{product_name}</div>
         <div>
           <div className="rate_design">{product_price}</div>
+
           <div>
+            {row.cart_status < 3 ? (
+              <button
+                className="Ordercancelbtnstyle"
+                onClick={() => CancelOrderBtnAction(row.cart_id)}
+              >
+                Cancel Order
+              </button>
+            ) :""
+            }
+
             {row.cart_status === 1 ? (
-              <> Your order has been placed</>
+              <>Your order has been placed</>
             ) : row.cart_status === 2 ? (
               <>Packed</>
             ) : row.cart_status === 3 ? (
               <>Dispatched</>
             ) : row.cart_status === 4 ? (
-              <>Shiped</>
+              <>Shipped</>
+            ) : row.cart_status === 6 ? (
+              <>Your Order is Cancelled</>
             ) : (
               <>
-                {" "}
                 Your item has been delivered
                 {reviewcheck ? (
                   ""
                 ) : (
-                  <button onClick={openReview}>/ Review this product</button>
+                  <button onClick={openReview}>Review this product</button>
                 )}
               </>
             )}

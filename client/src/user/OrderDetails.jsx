@@ -85,7 +85,7 @@ export default function OrderDetails() {
 
         <div>
           {displayout.map((row, key) => (
-            <OrderItems row={row}/>
+            <OrderItems row={row} getProductDetails={getProductDetails}/>
           ))}
         </div>
       </div>

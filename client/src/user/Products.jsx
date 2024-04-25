@@ -13,6 +13,7 @@ export default function Products() {
   const [arrayID, setArrayID] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [pricerangevalue, setPricerangevalue] = useState([0, 400000]);
+ 
 
   const handleChange = (event, newValue) => {
     const [one, two] = newValue
@@ -55,7 +56,6 @@ export default function Products() {
     setArrayID((prevState) => {
       // Check if the id is already present in the array
       const alreadyExists = prevState.some((item) => item === id);
-      console.log(alreadyExists);
       let newArray;
       if (alreadyExists) {
         // If it already exists, remove it from the array
@@ -83,19 +83,20 @@ export default function Products() {
     });
   };
 
+  const customerRatingbtnClick=()=>{
+   axios.get(`http://localhost:4777/RatingcountBtn`)
+   .then((response)=>response.data)
+   .then((data)=>{
+    setFilteredProducts(data.mobile)
+   })
+
+  }
+
   //Price RAnge
   function valuetext(value) {
     return `${value}`;
   }
   const pricerangeBtnClick = (id) => {
-    console.log(id);
-    // axios.get(`http://localhost:4777/priceRangeList/'${id}'/'${value.pid}'`)
-    // .then((response)=>response.data)
-    // .then((data)=>{
-
-    //   setProductData(data.mobile)
-    //   setPricerange(id)
-    // })
 
     const filteredProduct = productData.filter(
       (product) => product.product_price == id
@@ -143,7 +144,7 @@ export default function Products() {
         <div className="brand_Style">
           <details>
             <summary>CUSTOMER RATINGS</summary>
-            <input type="checkbox" style={{ margin: "10px" }} />4 ★ & above
+            <input type="checkbox" style={{ margin: "10px" }} onClick={customerRatingbtnClick} />4 ★ & above
             <br />
             <input type="checkbox" style={{ margin: "10px" }} />3 ★ & above
           </details>

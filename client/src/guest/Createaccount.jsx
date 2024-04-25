@@ -11,6 +11,7 @@ export default function Createaccount() {
   const [password, setPassword] = useState("");
   const [profliepic, setProfilepic] = useState("");
   const [placeid, setPlaceid] = useState("");
+  const [check, setCheck] = useState(false);
 
   useEffect(() => {
     getdistrict();
@@ -34,6 +35,7 @@ export default function Createaccount() {
   };
 
   const buttonClick = () => {
+   
     const frm = new FormData();
     frm.append("fullname", fullname);
     frm.append("countrycode", countrycode);
@@ -41,7 +43,7 @@ export default function Createaccount() {
     frm.append("email", email);
     frm.append("password", password);
     frm.append("profilepic", profliepic);
-    frm.append("placeid",placeid);
+    frm.append("placeid", placeid);
     axios.post("http://localhost:4777/User", frm).then((response) => {
       if (response.data.message === "Data Saved") window.location.reload();
       else {
@@ -49,6 +51,30 @@ export default function Createaccount() {
       }
     });
   };
+
+  const handlePassword = (event) => {
+    var NewPassword = event.target.value;
+    setPassword(NewPassword);
+    const isValidPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(
+      NewPassword
+    );
+    setCheck(!isValidPassword);
+    
+  };
+
+  const handleEmail=(event)=>{
+   var NewEmail=event.target.value
+   setEmail(NewEmail);
+   const isValidEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(NewEmail);
+   setCheck(!isValidEmail)
+  }
+
+  const handleMobile=(e)=>{
+    var NewMobile=e.target.value
+   setContact(NewMobile)
+   const isVaildMobile= /^[7-9]{1}[0-9]{9}$/.test(NewMobile)
+   setCheck(!isVaildMobile)
+  }
   return (
     <div
       className="createaccountmaincontainer"
@@ -81,20 +107,56 @@ export default function Createaccount() {
           >
             <option value="+91">+91</option>
           </select>
-          <input type="number" onChange={(e) => setContact(e.target.value)} />
+          <input
+            type="number"
+            required
+            onChange={handleMobile}
+           
+          />
+                 {!contact ? null : !check ? (
+            <div style={{ color: "Green" }}>
+              Thank you for providing your mobile number
+            </div>
+          ) : (
+            <div style={{  color: "red" }}>
+             Start with 7-9 and remaing 9 digit with 0-9
+            </div>
+          )}
         </div>
         <div className="label">
           Email <br />
-          <input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" onChange={handleEmail} required />
+          {!email ? null : !check ? (
+            <div style={{ marginInline: "90px", color: "Green" }}>
+              Strong Email
+            </div>
+          ) : (
+            <div style={{ marginInline: "90px", color: "red" }}>
+              Invaild Email
+            </div>
+          )}
+
         </div>
         <div className="label">
           Password <br />
-          <input type="password" onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" onChange={handlePassword} required />
           <br />
           <p>Passwords must be at least 6 characters.</p>
+          {!password ? null : !check ? (
+            <div style={{ marginInline: "90px", color: "Green" }}>
+              Strong Password
+            </div>
+          ) : (
+            <div style={{ marginInline: "90px", color: "red" }}>
+              Weak Password
+            </div>
+          )}
         </div>
         <div className="label">
-          <input type="file" onChange={(e) => setProfilepic(e.target.files[0])} />
+          <input
+            type="file"
+            onChange={(e) => setProfilepic(e.target.files[0])}
+          />
         </div>
         <div className="label">
           <select

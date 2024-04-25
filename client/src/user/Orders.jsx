@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 export default function Orders() {
     const uid=sessionStorage.getItem('uid')
-    console.log(uid);
     const[displayout,setDisplayout]=useState([])
        useEffect(()=>{
         getOrderDetails()

@@ -12,7 +12,7 @@ import Order from "./Orders";
 import OrderDetails from "./OrderDetails";
 import Review from "./Review";
 import Chatbot from "./Chatbot";
-import Userprofile from "./userprofile";
+import Userprofile from "./Userprofile";
 import Modal from "react-modal";
 import chatbotlogo from "./assets/chatbot.png";
 import axios from "axios";
