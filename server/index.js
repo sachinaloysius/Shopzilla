@@ -1304,17 +1304,3 @@ app.get("/ProductSearch:input", (req, res) => {
     }
   });
 });
-app.get('/RatingcountBtn',(req,res)=>{
-  let qry=`SELECT * FROM tbl_review r INNER JOIN tbl_product p ON r.product_id=p.product_id WHERE r.review_id >=4`
-  db.query(qry,(err,results)=>{
-    if(err){
-      console.log(err);
-    }
-    else{
-      console.log(results);
-      res.send({
-        mobile:results
-      })
-    }
-  })
-})

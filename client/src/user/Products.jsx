@@ -11,6 +11,7 @@ export default function Products() {
   const [productData, setProductData] = useState([]);
   const [subcategorydata, setSubCategoryData] = useState([]);
   const [arrayID, setArrayID] = useState([]);
+  const [ratingC, setRatingC] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [pricerangevalue, setPricerangevalue] = useState([0, 400000]);
  
@@ -83,14 +84,20 @@ export default function Products() {
     });
   };
 
-  const customerRatingbtnClick=()=>{
-   axios.get(`http://localhost:4777/RatingcountBtn`)
-   .then((response)=>response.data)
-   .then((data)=>{
-    setFilteredProducts(data.mobile)
-   })
+  const customerRatingbtnClick = (id) => {
+    if(ratingC === id){
+      setRatingC(null)
+      MobileData();
+    }
+    else{
+      const filteredProductRange = productData.filter(
+        (product) => product.ratingcount >= id
+      );
+      setFilteredProducts(filteredProductRange);
+    }
 
-  }
+    setRatingC(id)
+  };
 
   //Price RAnge
   function valuetext(value) {
@@ -144,9 +151,9 @@ export default function Products() {
         <div className="brand_Style">
           <details>
             <summary>CUSTOMER RATINGS</summary>
-            <input type="checkbox" style={{ margin: "10px" }} onClick={customerRatingbtnClick} />4 ★ & above
+            <input type="checkbox" style={{ margin: "10px" }}  onClick={()=>customerRatingbtnClick(4)} />4 ★ & above
             <br />
-            <input type="checkbox" style={{ margin: "10px" }} />3 ★ & above
+            <input type="checkbox" style={{ margin: "10px" }} onClick={()=>customerRatingbtnClick(3)} />3 ★ & above
           </details>
         </div>
         <div className="brand_Style">
